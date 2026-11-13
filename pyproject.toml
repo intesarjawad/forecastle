@@ -1,0 +1,45 @@
+[project]
+name = "forecastle-pipeline"
+version = "0.1.0"
+description = "Make a Forecastle puzzle from your own daily data; also the pipeline behind the daily game"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12,<3.13"
+dependencies = ["chronos-forecasting==2.3.2", "torch==2.15.0", "numpy==2.5.4"]
+[project.scripts]
+forecastle-pipeline = "forecastle_pipeline.cli:main"
+[dependency-groups]
+dev = ["ruff==0.17.4", "pyright==1.1.414", "pytest==9.2.0", "hypothesis==6.170.15", "opentimestamps-client==0.8.0"]
+bench = ["fev>=0.10.0", "datasets==4.8.5"]
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14"]
+build-backend = "uv_build"
+[tool.uv.build-backend]
+module-name = "forecastle_pipeline"
+module-root = "pipeline"
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+[tool.ruff]
+line-length = 100
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D100", "D104", "D105", "D107", "D203", "D213", "COM812", "CPY001"]
+[tool.ruff.lint.per-file-ignores]
+"pipeline/tests/*" = ["S101", "PLR2004", "D1", "INP001"]
+"scripts/*" = ["T201", "INP001"]
+"pipeline/forecastle_pipeline/cli.py" = ["T201"]
+"pipeline/forecastle_pipeline/series/http.py" = ["S310"]
+"pipeline/forecastle_pipeline/io/stamp.py" = ["S603"]
+"pipeline/forecastle_pipeline/io/seal.py" = ["S603"]
+[tool.pyright]
+typeCheckingMode = "strict"
+stubPath = "typings"
+include = ["pipeline", "scripts"]
+[tool.pytest.ini_options]
+testpaths = ["pipeline/tests"]
+cache_dir = ".cache/pytest"
+markers = ["model: needs the cached model", "slow: live network"]

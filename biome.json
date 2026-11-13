@@ -1,0 +1,43 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.5/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!site/public/puzzles",
+      "!site/public/live",
+      "!sealed",
+      "!benchmark",
+      "!scoring/parity.json",
+      "!site/dist",
+      "!playwright-report",
+      "!test-results",
+      "!.venv",
+      "!.cache",
+      "!forecastle-custom",
+      "!worker/.wrangler",
+      "!docs/design/frames"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "linter": {
+    "rules": {
+      "preset": "recommended",
+      "suspicious": {
+        "noExplicitAny": "error"
+      },
+      "style": {
+        "noNonNullAssertion": "error"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "always"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+# Browser storage names and deterministic test-only keys, not credentials.
+2b19e958b35dee61b90d8bbc1d8cb5c1f2fac33e:site/src/io/storage.ts:generic-api-key:150
+2b19e958b35dee61b90d8bbc1d8cb5c1f2fac33e:site/tests/unit/storage.test.ts:generic-api-key:147
+f3a1ce5ede1a3586b236bdefaa76c35d4c269391:site/src/ui/data.ts:generic-api-key:7
+320c9a3755526e2d63d61e4f7cf8c19b28fbb45d:site/src/io/submissions.ts:generic-api-key:6
+c4c454608b94064187ce317af7eafe02782ae0c3:pipeline/tests/test_seal.py:generic-api-key:7
+320c9a3755526e2d63d61e4f7cf8c19b28fbb45d:site/tests/unit/submissions.test.ts:generic-api-key:16
+c4c454608b94064187ce317af7eafe02782ae0c3:pipeline/tests/test_live_rounds.py:generic-api-key:43
+991a2eafb35a46bb3c0c0272138065e8eb04c207:site/tests/e2e/resilience.spec.ts:generic-api-key:142

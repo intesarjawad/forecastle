@@ -1,0 +1,17 @@
+node_modules/
+.venv/
+dist/
+site/dist/
+.cache/
+.wrangler/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+test-results/
+playwright-report/
+*.ots.bak
+.env
+.env.*
+!.env.example
+.DS_Store
+forecastle-custom/

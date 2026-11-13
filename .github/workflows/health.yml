@@ -1,0 +1,38 @@
+name: health
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency: health
+
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: health
+        run: scripts/worker_health.sh 2>&1 | tee health.txt
+      - name: Report the failure
+        if: failure()
+        run: |
+          if [ "$(gh issue list --search "Worker health: in:title" --state open --json number --jq length)" != 0 ]; then
+            echo "An open Worker health issue already exists"
+            exit 0
+          fi
+          gh issue create --title "Worker health: $(date -u +%F)" --body-file health.txt

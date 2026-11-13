@@ -1,0 +1,30 @@
+{
+  "name": "forecastle",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "site",
+    "worker"
+  ],
+  "engines": {
+    "node": ">=26.13.0 <27"
+  },
+  "scripts": {
+    "dev": "npm run dev -w site",
+    "build": "npm run build -w site",
+    "check": "biome ci . && node --test scripts/*.test.mjs && tsc -p site && tsc -p worker && npm test -w site && npm test -w worker",
+    "check:py": "uv run ruff format --check . && uv run ruff check . && uv run pyright && uv run pytest -m 'not model and not slow'",
+    "e2e": "playwright test",
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "prepare": "git config core.hooksPath >/dev/null || git config core.hooksPath .githooks"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.6",
+    "typescript": "7.0.2",
+    "@playwright/test": "1.65.0",
+    "@axe-core/playwright": "4.14.0",
+    "lighthouse": "13.6.0"
+  }
+}

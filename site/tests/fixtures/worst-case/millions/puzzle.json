@@ -1,0 +1,25 @@
+{
+  "ai": {
+    "forecaster": "fixture-model",
+    "revision": "fixture-revision",
+    "median": [2495000, 2495000, 2495000, 2495000, 2495000, 2495000, 2495000],
+    "q10": [2494000, 2494000, 2494000, 2494000, 2494000, 2494000, 2494000],
+    "q90": [2496000, 2496000, 2496000, 2496000, 2496000, 2496000, 2496000]
+  },
+  "forecastSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "gapDays": 0,
+  "horizon": 7,
+  "kind": "historical",
+  "id": "2026-12-02",
+  "number": 102,
+  "seriesId": "fixture-millions",
+  "label": "Daily streaming revenue, worldwide",
+  "unit": "USD",
+  "visible": [
+    2000000, 2050000, 2120000, 2080000, 2150000, 2220000, 2300000, 2260000, 2190000, 2140000,
+    2100000, 2060000, 2020000, 1980000, 2010000, 2070000, 2130000, 2180000, 2240000, 2300000,
+    2360000, 2330000, 2280000, 2230000, 2270000, 2320000, 2380000, 2420000
+  ],
+  "typicalMove": 50000,
+  "yDomain": [1804000, 2596000]
+}

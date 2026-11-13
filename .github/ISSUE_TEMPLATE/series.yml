@@ -1,0 +1,30 @@
+name: New series proposal
+description: Propose a data source for puzzles.
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+    validations:
+      required: true
+  - type: textarea
+    id: licence
+    attributes:
+      label: Licence and evidence
+      description: Link to the source's reuse terms.
+    validations:
+      required: true
+  - type: textarea
+    id: lag
+    attributes:
+      label: Publication lag
+      description: Describe how long observations take to become available.
+    validations:
+      required: true
+  - type: textarea
+    id: interest
+    attributes:
+      label: Why this series is interesting
+      description: Series must be apolitical and must not concern living people.
+    validations:
+      required: true

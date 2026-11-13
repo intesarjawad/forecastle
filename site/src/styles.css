@@ -1,0 +1,1337 @@
+:root {
+  --washi: #eeede7;
+  --sumi: #17140f;
+  --usuzumi: #6b6760;
+  --print: #55524c;
+  --shu: #a8350d;
+  --shu-ink: #df4a1a;
+  --clear: transparent;
+  /* Kozo: a faint cloud of formation, the tooth, and long thin fibres lying every way. */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='c' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.01' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .34 0 0 0 0 .3 0 0 0 .14 -.03'/%3E%3C/filter%3E%3Cfilter id='g' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .28 0 0 0 0 .25 0 0 0 .12 -.03'/%3E%3C/filter%3E%3Crect width='480' height='480' filter='url(%23c)'/%3E%3Crect width='480' height='480' filter='url(%23g)'/%3E%3Cg fill='none' stroke='%235c574d' stroke-linecap='round'%3E%3Cpath d='M217 269Q188 276 158 283' stroke-width='0.53' stroke-opacity='0.1'/%3E%3Cpath d='M246 302Q236 312 224 318' stroke-width='0.34' stroke-opacity='0.19'/%3E%3Cpath d='M333 20Q279 18 226 26' stroke-width='0.55' stroke-opacity='0.09'/%3E%3Cpath d='M7 254Q25 254 42 260' stroke-width='0.31' stroke-opacity='0.14'/%3E%3Cpath d='M211 -76Q209 -37 207 1' stroke-width='0.56' stroke-opacity='0.14'/%3E%3Cpath d='M211 404Q209 443 207 481' stroke-width='0.56' stroke-opacity='0.14'/%3E%3Cpath d='M134 -1Q86 -6 38 0' stroke-width='0.43' stroke-opacity='0.1'/%3E%3Cpath d='M134 479Q86 474 38 480' stroke-width='0.43' stroke-opacity='0.1'/%3E%3Cpath d='M139 34Q115 48 98 70' stroke-width='0.45' stroke-opacity='0.21'/%3E%3Cpath d='M-73 0Q-33 31 7 63' stroke-width='0.69' stroke-opacity='0.13'/%3E%3Cpath d='M407 0Q447 31 487 63' stroke-width='0.69' stroke-opacity='0.13'/%3E%3Cpath d='M35 302Q22 320 2 330' stroke-width='0.43' stroke-opacity='0.21'/%3E%3Cpath d='M364 57Q376 64 383 76' stroke-width='0.62' stroke-opacity='0.1'/%3E%3Cpath d='M268 215Q309 232 339 263' stroke-width='0.56' stroke-opacity='0.09'/%3E%3Cpath d='M202 102Q231 148 273 183' stroke-width='0.42' stroke-opacity='0.2'/%3E%3Cpath d='M101 189Q70 214 32 223' stroke-width='0.7' stroke-opacity='0.1'/%3E%3Cpath d='M124 371Q140 388 147 410' stroke-width='0.34' stroke-opacity='0.16'/%3E%3Cpath d='M117 289Q121 319 140 344' stroke-width='0.49' stroke-opacity='0.16'/%3E%3Cpath d='M-64 88Q-23 119 26 135' stroke-width='0.4' stroke-opacity='0.1'/%3E%3Cpath d='M416 88Q457 119 506 135' stroke-width='0.4' stroke-opacity='0.1'/%3E%3Cpath d='M355 -29Q391 11 441 32' stroke-width='0.54' stroke-opacity='0.13'/%3E%3Cpath d='M355 451Q391 491 441 512' stroke-width='0.54' stroke-opacity='0.13'/%3E%3Cpath d='M50 19Q30 19 10 23' stroke-width='0.4' stroke-opacity='0.19'/%3E%3Cpath d='M286 141Q328 154 358 185' stroke-width='0.39' stroke-opacity='0.15'/%3E%3Cpath d='M409 295Q448 329 474 374' stroke-width='0.31' stroke-opacity='0.11'/%3E%3Cpath d='M214 29Q235 44 258 56' stroke-width='0.35' stroke-opacity='0.12'/%3E%3Cpath d='M428 -9Q407 26 389 63' stroke-width='0.36' stroke-opacity='0.08'/%3E%3Cpath d='M428 471Q407 506 389 543' stroke-width='0.36' stroke-opacity='0.08'/%3E%3Cpath d='M9 -43Q-11 8 -54 43' stroke-width='0.55' stroke-opacity='0.14'/%3E%3Cpath d='M9 437Q-11 488 -54 523' stroke-width='0.55' stroke-opacity='0.14'/%3E%3Cpath d='M489 -43Q469 8 426 43' stroke-width='0.55' stroke-opacity='0.14'/%3E%3Cpath d='M489 437Q469 488 426 523' stroke-width='0.55' stroke-opacity='0.14'/%3E%3Cpath d='M351 153Q338 153 326 153' stroke-width='0.59' stroke-opacity='0.21'/%3E%3Cpath d='M354 338Q316 372 272 400' stroke-width='0.57' stroke-opacity='0.21'/%3E%3Cpath d='M418 200Q378 228 341 260' stroke-width='0.55' stroke-opacity='0.13'/%3E%3Cpath d='M280 292Q314 312 354 311' stroke-width='0.65' stroke-opacity='0.18'/%3E%3Cpath d='M186 353Q174 380 172 409' stroke-width='0.33' stroke-opacity='0.18'/%3E%3Cpath d='M14 289Q13 308 17 328' stroke-width='0.5' stroke-opacity='0.16'/%3E%3Cpath d='M-38 123Q-15 126 7 124' stroke-width='0.38' stroke-opacity='0.1'/%3E%3Cpath d='M442 123Q465 126 487 124' stroke-width='0.38' stroke-opacity='0.1'/%3E%3Cpath d='M435 317Q449 365 453 415' stroke-width='0.57' stroke-opacity='0.1'/%3E%3Cpath d='M207 387Q160 403 111 413' stroke-width='0.53' stroke-opacity='0.12'/%3E%3Cpath d='M65 238Q21 257 -18 285' stroke-width='0.68' stroke-opacity='0.11'/%3E%3Cpath d='M545 238Q501 257 462 285' stroke-width='0.68' stroke-opacity='0.11'/%3E%3Cpath d='M81 216Q94 230 106 245' stroke-width='0.55' stroke-opacity='0.14'/%3E%3Cpath d='M151 403Q122 412 92 406' stroke-width='0.31' stroke-opacity='0.2'/%3E%3Cpath d='M20 340Q11 362 10 385' stroke-width='0.31' stroke-opacity='0.09'/%3E%3Cpath d='M218 12Q203 25 184 32' stroke-width='0.32' stroke-opacity='0.16'/%3E%3Cpath d='M214 302Q182 338 171 384' stroke-width='0.57' stroke-opacity='0.1'/%3E%3Cpath d='M228 86Q259 90 289 88' stroke-width='0.37' stroke-opacity='0.11'/%3E%3Cpath d='M166 335Q158 372 161 409' stroke-width='0.46' stroke-opacity='0.19'/%3E%3Cpath d='M435 42Q396 59 352 60' stroke-width='0.48' stroke-opacity='0.16'/%3E%3Cpath d='M437 181Q418 227 416 277' stroke-width='0.68' stroke-opacity='0.14'/%3E%3Cpath d='M313 98Q280 132 253 170' stroke-width='0.59' stroke-opacity='0.1'/%3E%3Cpath d='M432 471Q398 468 365 475' stroke-width='0.43' stroke-opacity='0.21'/%3E%3Cpath d='M411 167Q439 176 467 182' stroke-width='0.61' stroke-opacity='0.14'/%3E%3Cpath d='M14 388Q60 389 103 407' stroke-width='0.43' stroke-opacity='0.19'/%3E%3Cpath d='M67 71Q57 113 63 156' stroke-width='0.58' stroke-opacity='0.21'/%3E%3Cpath d='M236 456Q255 461 273 466' stroke-width='0.42' stroke-opacity='0.18'/%3E%3Cpath d='M307 251Q278 271 245 284' stroke-width='0.45' stroke-opacity='0.2'/%3E%3Cpath d='M432 100Q384 124 337 148' stroke-width='0.53' stroke-opacity='0.1'/%3E%3Cpath d='M257 242Q251 250 251 261' stroke-width='0.51' stroke-opacity='0.13'/%3E%3Cpath d='M385 270Q396 311 387 352' stroke-width='0.52' stroke-opacity='0.13'/%3E%3Cpath d='M-21 -37Q5 -18 20 9' stroke-width='0.47' stroke-opacity='0.19'/%3E%3Cpath d='M-21 443Q5 462 20 489' stroke-width='0.47' stroke-opacity='0.19'/%3E%3Cpath d='M459 -37Q485 -18 500 9' stroke-width='0.47' stroke-opacity='0.19'/%3E%3Cpath d='M459 443Q485 462 500 489' stroke-width='0.47' stroke-opacity='0.19'/%3E%3Cpath d='M432 229Q441 244 452 259' stroke-width='0.67' stroke-opacity='0.09'/%3E%3Cpath d='M374 11Q389 24 406 33' stroke-width='0.43' stroke-opacity='0.12'/%3E%3Cpath d='M297 50Q288 61 278 72' stroke-width='0.4' stroke-opacity='0.1'/%3E%3Cpath d='M255 210Q265 236 276 261' stroke-width='0.36' stroke-opacity='0.1'/%3E%3Cpath d='M303 306Q296 354 294 402' stroke-width='0.64' stroke-opacity='0.1'/%3E%3Cpath d='M356 389Q334 398 311 403' stroke-width='0.67' stroke-opacity='0.1'/%3E%3Cpath d='M-1 426Q16 437 36 442' stroke-width='0.4' stroke-opacity='0.08'/%3E%3Cpath d='M479 426Q496 437 516 442' stroke-width='0.4' stroke-opacity='0.08'/%3E%3Cpath d='M399 202Q388 212 376 221' stroke-width='0.57' stroke-opacity='0.07'/%3E%3Cpath d='M96 328Q48 353 -7 357' stroke-width='0.5' stroke-opacity='0.18'/%3E%3Cpath d='M576 328Q528 353 473 357' stroke-width='0.5' stroke-opacity='0.18'/%3E%3Cpath d='M241 329Q253 334 262 343' stroke-width='0.31' stroke-opacity='0.15'/%3E%3Cpath d='M247 273Q264 278 278 289' stroke-width='0.64' stroke-opacity='0.22'/%3E%3Cpath d='M-35 46Q17 55 68 66' stroke-width='0.61' stroke-opacity='0.12'/%3E%3Cpath d='M445 46Q497 55 548 66' stroke-width='0.61' stroke-opacity='0.12'/%3E%3Cpath d='M224 247Q242 281 240 319' stroke-width='0.58' stroke-opacity='0.2'/%3E%3Cpath d='M87 218Q72 241 49 258' stroke-width='0.37' stroke-opacity='0.15'/%3E%3Cpath d='M7 429Q-31 446 -60 477' stroke-width='0.55' stroke-opacity='0.13'/%3E%3Cpath d='M487 429Q449 446 420 477' stroke-width='0.55' stroke-opacity='0.13'/%3E%3Cpath d='M288 242Q242 251 196 247' stroke-width='0.66' stroke-opacity='0.18'/%3E%3Cpath d='M373 -89Q378 -38 403 7' stroke-width='0.58' stroke-opacity='0.19'/%3E%3Cpath d='M373 391Q378 442 403 487' stroke-width='0.58' stroke-opacity='0.19'/%3E%3Cpath d='M367 195Q360 205 352 213' stroke-width='0.49' stroke-opacity='0.07'/%3E%3Cpath d='M171 307Q159 323 156 343' stroke-width='0.57' stroke-opacity='0.12'/%3E%3Cpath d='M317 273Q306 299 311 327' stroke-width='0.56' stroke-opacity='0.18'/%3E%3Cpath d='M366 470Q402 478 440 476' stroke-width='0.4' stroke-opacity='0.13'/%3E%3Cpath d='M24 94Q31 106 35 119' stroke-width='0.66' stroke-opacity='0.15'/%3E%3Cpath d='M244 -16Q228 37 221 91' stroke-width='0.62' stroke-opacity='0.08'/%3E%3Cpath d='M244 464Q228 517 221 571' stroke-width='0.62' stroke-opacity='0.08'/%3E%3Cpath d='M287 364Q339 362 389 379' stroke-width='0.49' stroke-opacity='0.1'/%3E%3Cpath d='M238 293Q290 301 341 313' stroke-width='0.51' stroke-opacity='0.16'/%3E%3Cpath d='M175 137Q163 170 143 199' stroke-width='0.59' stroke-opacity='0.11'/%3E%3Cpath d='M7 118Q22 122 39 122' stroke-width='0.46' stroke-opacity='0.2'/%3E%3Cpath d='M359 24Q307 38 254 28' stroke-width='0.66' stroke-opacity='0.13'/%3E%3Cpath d='M229 -13Q247 16 277 33' stroke-width='0.59' stroke-opacity='0.14'/%3E%3Cpath d='M229 467Q247 496 277 513' stroke-width='0.59' stroke-opacity='0.14'/%3E%3Cpath d='M470 392Q464 405 461 419' stroke-width='0.48' stroke-opacity='0.1'/%3E%3Cpath d='M25 253Q51 267 79 276' stroke-width='0.48' stroke-opacity='0.11'/%3E%3Cpath d='M279 201Q248 216 228 244' stroke-width='0.68' stroke-opacity='0.18'/%3E%3Cpath d='M114 55Q71 67 29 84' stroke-width='0.44' stroke-opacity='0.11'/%3E%3Cpath d='M329 271Q313 306 307 344' stroke-width='0.38' stroke-opacity='0.11'/%3E%3Cpath d='M470 440Q461 446 450 448' stroke-width='0.41' stroke-opacity='0.13'/%3E%3Cpath d='M299 49Q300 62 296 74' stroke-width='0.57' stroke-opacity='0.15'/%3E%3Cpath d='M303 179Q306 198 305 216' stroke-width='0.6' stroke-opacity='0.2'/%3E%3Cpath d='M36 57Q1 74 -27 100' stroke-width='0.39' stroke-opacity='0.13'/%3E%3Cpath d='M516 57Q481 74 453 100' stroke-width='0.39' stroke-opacity='0.13'/%3E%3Cpath d='M124 389Q130 429 155 460' stroke-width='0.43' stroke-opacity='0.15'/%3E%3Cpath d='M358 -38Q370 -14 370 13' stroke-width='0.65' stroke-opacity='0.08'/%3E%3Cpath d='M358 442Q370 466 370 493' stroke-width='0.65' stroke-opacity='0.08'/%3E%3Cpath d='M40 271Q46 311 44 352' stroke-width='0.61' stroke-opacity='0.08'/%3E%3Cpath d='M102 318Q124 326 147 329' stroke-width='0.58' stroke-opacity='0.11'/%3E%3Cpath d='M69 172Q56 195 35 211' stroke-width='0.58' stroke-opacity='0.16'/%3E%3Cpath d='M441 451Q412 454 385 467' stroke-width='0.42' stroke-opacity='0.12'/%3E%3Cpath d='M192 449Q173 457 153 462' stroke-width='0.45' stroke-opacity='0.12'/%3E%3Cpath d='M190 186Q215 211 247 226' stroke-width='0.52' stroke-opacity='0.2'/%3E%3Cpath d='M270 85Q238 123 198 153' stroke-width='0.31' stroke-opacity='0.15'/%3E%3Cpath d='M261 272Q222 270 184 281' stroke-width='0.33' stroke-opacity='0.15'/%3E%3Cpath d='M378 40Q417 61 461 62' stroke-width='0.33' stroke-opacity='0.17'/%3E%3Cpath d='M69 358Q63 378 51 394' stroke-width='0.61' stroke-opacity='0.15'/%3E%3Cpath d='M367 189Q389 239 419 283' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M346 340Q318 342 292 355' stroke-width='0.57' stroke-opacity='0.2'/%3E%3Cpath d='M387 400Q336 415 287 437' stroke-width='0.51' stroke-opacity='0.18'/%3E%3Cpath d='M385 202Q387 218 393 233' stroke-width='0.7' stroke-opacity='0.13'/%3E%3Cpath d='M80 98Q80 121 91 142' stroke-width='0.32' stroke-opacity='0.12'/%3E%3Cpath d='M55 311Q45 325 29 333' stroke-width='0.48' stroke-opacity='0.16'/%3E%3Cpath d='M436 17Q454 21 469 29' stroke-width='0.39' stroke-opacity='0.18'/%3E%3Cpath d='M285 108Q306 116 322 132' stroke-width='0.6' stroke-opacity='0.12'/%3E%3Cpath d='M263 392Q260 413 266 434' stroke-width='0.67' stroke-opacity='0.12'/%3E%3Cpath d='M263 -21Q269 -2 265 18' stroke-width='0.68' stroke-opacity='0.19'/%3E%3Cpath d='M263 459Q269 478 265 498' stroke-width='0.68' stroke-opacity='0.19'/%3E%3Cpath d='M185 253Q178 275 183 296' stroke-width='0.56' stroke-opacity='0.11'/%3E%3Cpath d='M5 227Q18 271 41 311' stroke-width='0.54' stroke-opacity='0.09'/%3E%3Cpath d='M75 154Q109 190 143 226' stroke-width='0.55' stroke-opacity='0.22'/%3E%3Cpath d='M128 257Q173 266 207 297' stroke-width='0.63' stroke-opacity='0.2'/%3E%3Cpath d='M395 40Q429 65 450 103' stroke-width='0.49' stroke-opacity='0.14'/%3E%3Cpath d='M459 282Q436 288 417 301' stroke-width='0.47' stroke-opacity='0.21'/%3E%3Cpath d='M44 397Q70 418 98 438' stroke-width='0.36' stroke-opacity='0.19'/%3E%3Cpath d='M149 149Q172 154 194 160' stroke-width='0.59' stroke-opacity='0.12'/%3E%3Cpath d='M330 51Q332 82 350 108' stroke-width='0.63' stroke-opacity='0.17'/%3E%3Cpath d='M6 181Q-7 196 -18 213' stroke-width='0.48' stroke-opacity='0.07'/%3E%3Cpath d='M486 181Q473 196 462 213' stroke-width='0.48' stroke-opacity='0.07'/%3E%3Cpath d='M-4 384Q28 403 55 429' stroke-width='0.45' stroke-opacity='0.15'/%3E%3Cpath d='M476 384Q508 403 535 429' stroke-width='0.45' stroke-opacity='0.15'/%3E%3Cpath d='M143 162Q161 198 169 237' stroke-width='0.38' stroke-opacity='0.18'/%3E%3Cpath d='M158 -26Q154 16 142 57' stroke-width='0.63' stroke-opacity='0.08'/%3E%3Cpath d='M158 454Q154 496 142 537' stroke-width='0.63' stroke-opacity='0.08'/%3E%3Cpath d='M68 45Q52 85 24 116' stroke-width='0.46' stroke-opacity='0.2'/%3E%3Cpath d='M285 43Q299 51 309 64' stroke-width='0.46' stroke-opacity='0.08'/%3E%3Cpath d='M442 205Q435 244 439 282' stroke-width='0.63' stroke-opacity='0.13'/%3E%3Cpath d='M159 198Q186 202 214 200' stroke-width='0.69' stroke-opacity='0.19'/%3E%3Cpath d='M317 292Q341 291 365 295' stroke-width='0.56' stroke-opacity='0.09'/%3E%3Cpath d='M181 244Q142 271 107 302' stroke-width='0.36' stroke-opacity='0.18'/%3E%3Cpath d='M433 263Q453 289 462 320' stroke-width='0.59' stroke-opacity='0.22'/%3E%3Cpath d='M248 343Q230 348 216 361' stroke-width='0.55' stroke-opacity='0.1'/%3E%3Cpath d='M40 117Q34 158 20 197' stroke-width='0.67' stroke-opacity='0.12'/%3E%3Cpath d='M222 60Q207 57 192 62' stroke-width='0.52' stroke-opacity='0.15'/%3E%3Cpath d='M269 127Q214 133 164 158' stroke-width='0.54' stroke-opacity='0.09'/%3E%3Cpath d='M396 139Q377 144 358 151' stroke-width='0.63' stroke-opacity='0.1'/%3E%3Cpath d='M263 37Q280 43 297 40' stroke-width='0.68' stroke-opacity='0.17'/%3E%3Cpath d='M148 322Q129 341 112 361' stroke-width='0.62' stroke-opacity='0.07'/%3E%3Cpath d='M96 225Q119 237 144 248' stroke-width='0.37' stroke-opacity='0.15'/%3E%3Cpath d='M127 273Q155 301 165 339' stroke-width='0.57' stroke-opacity='0.09'/%3E%3Cpath d='M460 288Q461 316 466 344' stroke-width='0.58' stroke-opacity='0.18'/%3E%3Cpath d='M361 233Q313 225 266 235' stroke-width='0.46' stroke-opacity='0.14'/%3E%3Cpath d='M272 -45Q270 -12 266 21' stroke-width='0.66' stroke-opacity='0.12'/%3E%3Cpath d='M272 435Q270 468 266 501' stroke-width='0.66' stroke-opacity='0.12'/%3E%3Cpath d='M26 348Q-15 359 -55 375' stroke-width='0.6' stroke-opacity='0.12'/%3E%3Cpath d='M506 348Q465 359 425 375' stroke-width='0.6' stroke-opacity='0.12'/%3E%3Cpath d='M285 34Q312 45 340 56' stroke-width='0.46' stroke-opacity='0.08'/%3E%3Cpath d='M334 253Q351 267 367 284' stroke-width='0.39' stroke-opacity='0.08'/%3E%3Cpath d='M437 -16Q415 27 389 69' stroke-width='0.62' stroke-opacity='0.1'/%3E%3Cpath d='M437 464Q415 507 389 549' stroke-width='0.62' stroke-opacity='0.1'/%3E%3Cpath d='M358 272Q345 274 333 280' stroke-width='0.35' stroke-opacity='0.15'/%3E%3C/g%3E%3C/svg%3E");
+  --font-text: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --text-small: 12px;
+  --text-quiet: 14px;
+  --text-body: 16px;
+  --text-display: 24px;
+  --text-stamp: 32px;
+  --weight-text: 400;
+  --weight-emphasis: 600;
+  --weight-display: 800;
+  --leading-tight: 1;
+  --leading-text: 1.45;
+  --leading-quiet: 20px;
+  --underline-offset: 0.2em;
+  --space-0: 0px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-44: 44px;
+  --space-48: 48px;
+  --space-52: 52px;
+  --space-64: 64px;
+  --viewport-height: 100svh;
+  --card-width: 576px;
+  --card-gutter: 16px;
+  --control-height: 44px;
+  --sheet-width: 1120px;
+  --column: 136px;
+  --gutter: 44px;
+  --gutter-wide: 72px;
+  --gutter-phone: 28px;
+  --column-phone: calc((100vw - var(--card-gutter) * 2 - var(--gutter-phone) * 2) / 3);
+  --title-width: 96px;
+  /* On a desk the week takes the height the page leaves, so the sheet reaches the foot of the
+     screen; on a phone the corrected sheet must still fit, so the rows stay short. */
+  --row: clamp(48px, calc((100svh - 340px) / 7), 80px);
+  --row-phone: clamp(44px, calc((100svh - 536px) / 7), 56px);
+  --score-width: 112px;
+  --score-height: 56px;
+  /* The hanamaru's petals reach about 31px past the score's box. */
+  --hanamaru-room: 52px;
+  --wedge-height: 16px;
+  --radius-card: 4px;
+  --radius-cell: 2px;
+  --radius-round: 50%;
+  --edge: 1px;
+  --edge-strong: 2px;
+  --outline-focus: 3px;
+  --ink-focus: var(--shu);
+  --chart-ratio-phone: 83 / 75;
+  --chart-ratio-wide: 16 / 10;
+  --plot-left: 40px;
+  --plot-gutter: 48px;
+  --plot-top: 12px;
+  --plot-bottom-open: 40px;
+  --plot-bottom-locked: 64px;
+  --history-fraction: 0.63;
+  --label-gap: 24px;
+  --label-inset: 12px;
+  --label-baseline: 4px;
+  --label-height: 20px;
+  --label-width: 32px;
+  --axis-tick-length: 4px;
+  --axis-text-offset: 20px;
+  --prompt-offset: 72px;
+  --stroke-history: 2px;
+  --stroke-reality: 4px;
+  --stroke-machine: 2px;
+  --stroke-interval: 1px;
+  --stroke-connector: 1px;
+  --stroke-crease: 1px;
+  --linecap-round: round;
+  --linecap-machine: butt;
+  --linejoin: round;
+  --dash-machine: 6px;
+  --dash-machine-gap: 4px;
+  --dash-interval: 2px;
+  --dash-interval-gap: 4px;
+  --dash-crowd: 2px;
+  --dash-crowd-gap: 5px;
+  --marker-radius: 3px;
+  --handle-radius: 8px;
+  --you-coverage-opacity: 0.16;
+  --ai-coverage-opacity: 0.18;
+  --empty-field-opacity: 0.055;
+  --crease-opacity: 0.16;
+  --fold-opacity: 0.28;
+  --grain-opacity: 0.55;
+  --duration-reveal: 2450ms;
+  --duration-unfold: 600ms;
+  --delay-real: 0ms;
+  --delay-real-copy: 300ms;
+  --duration-real: 700ms;
+  --delay-marks: 800ms;
+  --duration-mark: 200ms;
+  --duration-mark-stagger: 110ms;
+  --delay-scores: 1400ms;
+  --duration-scores: 500ms;
+  --delay-circle: 1850ms;
+  --duration-circle: 600ms;
+  --delay-stamp: 2150ms;
+  --duration-stamp: 300ms;
+  --duration-reduced: 0ms;
+  --ease-reveal: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@font-face {
+  font-family: "Shippori Mincho";
+  src: url("@fontsource/shippori-mincho/files/shippori-mincho-latin-600-normal.woff2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  color-scheme: light;
+}
+body {
+  margin: var(--space-0);
+  padding: var(--card-gutter);
+  min-block-size: var(--viewport-height);
+  display: grid;
+  place-items: start center;
+  background: var(--washi);
+  color: var(--sumi);
+  font-family: var(--font-text);
+  font-size: var(--text-body);
+  font-weight: var(--weight-text);
+  line-height: var(--leading-text);
+  font-variant-numeric: lining-nums;
+  position: relative;
+}
+/* The sheet's fibre and tooth, laid over the whole document, so a long page has no seam. */
+body::before {
+  content: "";
+  position: absolute;
+  inset: var(--space-0);
+  z-index: -1;
+  background-image: var(--paper-grain);
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+}
+a {
+  color: inherit;
+  text-decoration-thickness: var(--edge);
+  text-underline-offset: var(--underline-offset);
+}
+:focus-visible {
+  outline: var(--outline-focus) solid var(--ink-focus);
+  outline-offset: var(--space-4);
+}
+.noscript {
+  max-inline-size: var(--card-width);
+  padding: var(--space-16);
+}
+.match-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  inline-size: min(100%, var(--card-width));
+}
+.match-card > * {
+  grid-column: 1 / -1;
+}
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-16);
+  padding-block: var(--space-8) var(--space-16);
+}
+.wordmark,
+.match-number {
+  margin: var(--space-0);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+}
+.match-number {
+  font-size: var(--text-body);
+  font-weight: var(--weight-emphasis);
+  white-space: nowrap;
+}
+.match-number.custom-title {
+  font-size: var(--text-quiet);
+  text-align: end;
+  text-wrap: balance;
+}
+
+/* The lesson: the series written in weekly columns, read from the right. */
+.lesson-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  /* The links sit at the foot of the screen, so the page ends where the paper does. */
+  grid-template-rows: auto auto 1fr;
+  min-block-size: calc(var(--viewport-height) - var(--card-gutter) * 2);
+  inline-size: min(100%, var(--sheet-width));
+}
+.lesson-page > * {
+  grid-column: 1 / -1;
+}
+.lesson {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns:
+    var(--column-phone) var(--gutter-phone) var(--column-phone) var(--gutter-phone)
+    var(--column-phone);
+  grid-template-rows: auto auto calc(var(--row-phone) * 7) auto auto;
+  justify-content: center;
+}
+.series,
+.column-head,
+.your-prompt,
+.copy-cover,
+.controls,
+.score-pair,
+.result {
+  position: relative;
+  z-index: 2;
+}
+.series {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  grid-row: 1;
+  grid-column: 1 / -1;
+  margin: var(--space-0) var(--space-0) var(--space-12);
+  font-size: var(--text-display);
+  font-weight: var(--weight-emphasis);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+.unit {
+  color: var(--print);
+  font-size: var(--text-quiet);
+  font-weight: var(--weight-text);
+}
+.band-control.is-waiting {
+  display: none;
+}
+.series-dates {
+  display: block;
+  color: var(--print);
+  font-size: var(--text-quiet);
+  font-weight: var(--weight-text);
+  /* The dates arrive with the answer; their line is held so the sheet does not drop. */
+  min-block-size: var(--leading-quiet);
+  padding-block-start: var(--space-4);
+  line-height: var(--leading-quiet);
+}
+.column-head {
+  grid-row: 2;
+  display: grid;
+  align-content: end;
+  justify-items: center;
+  margin: var(--space-0);
+  padding-block-end: var(--space-16);
+  font-size: var(--text-small);
+  line-height: var(--leading-quiet);
+  white-space: nowrap;
+}
+.head-ai {
+  padding-block-end: var(--space-0);
+  min-inline-size: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.head-name {
+  max-inline-size: 100%;
+  font-weight: var(--weight-emphasis);
+}
+.head-days {
+  color: var(--print);
+}
+.head-you {
+  font-size: var(--text-quiet);
+}
+.col-body {
+  grid-row: 3;
+}
+.head-ai,
+.body-ai,
+.copy-cover {
+  grid-column: 1;
+}
+.head-you,
+.body-you {
+  grid-column: 3;
+}
+/* The hint stays in the empty AI column, clear of the drawing handles. */
+.your-prompt {
+  grid-column: 1 / 4;
+}
+.head-w3,
+.body-w3 {
+  grid-column: 5;
+}
+.head-w0,
+.head-w1,
+.head-w2,
+.body-w0,
+.body-w1,
+.body-w2 {
+  display: none;
+}
+.your-prompt {
+  grid-row: 3;
+  align-self: start;
+  display: grid;
+  gap: var(--space-24);
+  margin: var(--space-0);
+  padding-block-start: var(--space-24);
+  padding-inline-end: var(--space-8);
+  font-size: var(--text-quiet);
+  line-height: var(--leading-quiet);
+  text-wrap: pretty;
+  pointer-events: none;
+}
+.prompt-line {
+  max-inline-size: var(--column);
+}
+.prompt-line,
+.swatch-labels,
+.swatch-note {
+  margin: var(--space-0);
+}
+/* The note sits over the AI's column, the three brushes in yours, where the brush will go. */
+.doubt-swatch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "note ink" "note labels";
+  align-items: end;
+  column-gap: var(--space-12);
+  row-gap: var(--space-4);
+}
+.swatch-ink {
+  grid-area: ink;
+}
+.swatch-labels {
+  grid-area: labels;
+}
+.swatch-note {
+  grid-area: note;
+  align-self: center;
+}
+.swatch-ink {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+.swatch-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--print);
+  font-size: var(--text-small);
+}
+.swatch-note {
+  color: var(--print);
+  font-size: var(--text-small);
+}
+.has-ink .your-prompt {
+  display: none;
+}
+/* On the phone the three brushes wait under "Hand it in", over the room the doubt slider holds
+   until you have drawn, so the idle sheet has no empty paper under it. They leave as the brush
+   lands and the sheet keeps its height, so nothing moves and the ink is never repainted. */
+@media (max-width: 59.99em) {
+  .your-prompt,
+  .has-ink .your-prompt {
+    display: contents;
+  }
+  .prompt-line,
+  .doubt-swatch {
+    position: relative;
+    z-index: 2;
+  }
+  .prompt-line {
+    grid-row: 3;
+    grid-column: 1;
+    align-self: start;
+    padding-block-start: var(--space-24);
+    padding-inline-end: var(--space-8);
+  }
+  .doubt-swatch {
+    grid-row: 4;
+    grid-column: 1 / -1;
+    align-self: end;
+    margin-block-end: var(--space-24);
+  }
+  .band-control.is-waiting {
+    display: grid;
+    visibility: hidden;
+  }
+  .has-ink .prompt-line,
+  .has-ink .doubt-swatch {
+    display: none;
+  }
+}
+/* The AI's column is plain ruled paper until it opens, with one line at its foot. */
+.copy-cover {
+  grid-row: 3;
+  display: grid;
+  align-content: end;
+  padding: var(--space-12) var(--space-0);
+  color: var(--print);
+  font-size: var(--text-small);
+  line-height: var(--leading-quiet);
+  transform-origin: top;
+  transition: transform var(--duration-unfold) var(--ease-reveal);
+}
+.copy-cover p {
+  margin: var(--space-0);
+}
+.is-revealed .copy-cover {
+  transform: scaleY(0);
+}
+/* A returning visit, like reduced motion, opens the copy at once with the rest of the sheet. */
+.is-settled .copy-cover {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .copy-cover {
+    transition: none;
+  }
+}
+.lesson .sheet-svg {
+  block-size: auto;
+  overflow: visible;
+}
+.sheet-fold {
+  stroke: var(--print);
+  stroke-width: var(--edge);
+  stroke-opacity: var(--fold-opacity);
+}
+.sheet-start {
+  fill: var(--washi);
+  stroke: var(--sumi);
+  stroke-width: var(--edge-strong);
+}
+.sheet-crease {
+  stroke: var(--print);
+  stroke-width: var(--stroke-crease);
+  stroke-opacity: var(--crease-opacity);
+}
+.chart-svg .sheet-tick {
+  fill: var(--print);
+  font-size: var(--text-small);
+}
+.sheet-dot {
+  fill: var(--print);
+}
+.sheet-copy-line {
+  fill: none;
+  stroke: var(--print);
+  stroke-width: var(--stroke-machine);
+  stroke-linejoin: var(--linejoin);
+}
+.sheet-copy-day {
+  fill: var(--print);
+}
+/* Once the copy is marked, a dot inside a double circle would read as a target. */
+.is-revealed .sheet-copy-day {
+  display: none;
+}
+/* Graphite: the printed grey, laid lighter and darker where the paper's tooth catches it. */
+.sheet-link {
+  fill: var(--print);
+}
+.sheet-crowd,
+.chart-crowd {
+  fill: none;
+  stroke: var(--print);
+  stroke-width: var(--stroke-machine);
+  stroke-dasharray: var(--dash-crowd) var(--dash-crowd-gap);
+  stroke-linecap: var(--linecap-round);
+}
+.ink-layer {
+  max-inline-size: 100%;
+  position: absolute;
+  inset-block-start: var(--space-0);
+  inset-inline-start: var(--space-0);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Vermilion is an opaque pigment, so it lies over the sumi rather than darkening into it. The
+   teacher's marks lie on top of the bled ink and never soak in. */
+.ink-marks {
+  z-index: 2;
+}
+.is-wet .ink-layer:not(.ink-gl):not(.ink-marks) {
+  opacity: 0;
+}
+
+.draw-region {
+  fill: var(--clear);
+  touch-action: none;
+  cursor: crosshair;
+}
+.draw-handles {
+  position: absolute;
+  inset: var(--space-0);
+  z-index: 3;
+  pointer-events: none;
+}
+.draw-handle {
+  position: absolute;
+  inline-size: calc(var(--handle-radius) * 2);
+  block-size: calc(var(--handle-radius) * 2);
+  padding: var(--space-0);
+  border: var(--edge-strong) solid var(--clear);
+  border-radius: var(--radius-round);
+  background: var(--clear);
+  transform: translate(-50%, -50%);
+}
+.draw-handle:focus-visible {
+  background: var(--washi);
+  border-color: var(--sumi);
+}
+.draw-hint {
+  margin: var(--space-0);
+  padding: var(--space-4);
+  pointer-events: none;
+  color: var(--sumi);
+  font-size: var(--text-quiet);
+  font-weight: var(--weight-emphasis);
+  text-align: center;
+}
+
+.controls {
+  grid-row: 4;
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-8);
+  padding-block-start: var(--space-16);
+}
+.controls[hidden],
+.key-button[hidden] {
+  display: none;
+}
+.band-control {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-between;
+  row-gap: var(--space-4);
+}
+.band-label {
+  grid-column: 1 / -1;
+  font-weight: var(--weight-emphasis);
+}
+/* The track is a brush stroke that widens from sure to unsure: the band is the brush. */
+.band-wedge {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  align-self: center;
+  block-size: var(--wedge-height);
+  margin-inline: var(--space-12);
+  background: var(--sumi);
+  clip-path: polygon(0 44%, 100% 0, 100% 100%, 0 56%);
+  pointer-events: none;
+}
+.band-input {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+  margin: var(--space-0);
+  appearance: none;
+  background: var(--clear);
+  cursor: pointer;
+}
+.band-input::-webkit-slider-runnable-track {
+  block-size: var(--wedge-height);
+  background: var(--clear);
+}
+.band-input::-moz-range-track {
+  block-size: var(--wedge-height);
+  background: var(--clear);
+}
+.band-input::-webkit-slider-thumb {
+  appearance: none;
+  inline-size: var(--space-24);
+  block-size: var(--space-24);
+  margin-block-start: calc(var(--space-8) / -2);
+  border: var(--edge-strong) solid var(--sumi);
+  border-radius: var(--radius-round);
+  background: var(--washi);
+}
+.band-input::-moz-range-thumb {
+  box-sizing: border-box;
+  inline-size: var(--space-24);
+  block-size: var(--space-24);
+  border: var(--edge-strong) solid var(--sumi);
+  border-radius: var(--radius-round);
+  background: var(--washi);
+}
+.band-input:focus-visible {
+  outline-offset: var(--space-0);
+}
+.band-input:disabled {
+  cursor: default;
+}
+.band-captions {
+  display: contents;
+  color: var(--print);
+  font-size: var(--text-quiet);
+}
+.band-help {
+  grid-column: 1 / -1;
+  margin: var(--space-0);
+  color: var(--print);
+  font-size: var(--text-quiet);
+}
+.lock-button,
+.key-button {
+  display: block;
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+  border: var(--edge) solid var(--sumi);
+  border-radius: var(--radius-cell);
+  background: var(--sumi);
+  color: var(--washi);
+  font: inherit;
+  font-weight: var(--weight-emphasis);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+/* Before there is a week to hand in, the button is drawn in outline, not yet filled with ink. */
+.lock-button:disabled {
+  background: var(--clear);
+  color: var(--sumi);
+  cursor: default;
+}
+/* Vermilion belongs to the teacher alone, so Share is the player's own sumi, set small. */
+.share-button {
+  justify-self: start;
+  inline-size: auto;
+  padding-inline: var(--space-24);
+}
+.answer-error {
+  margin: var(--space-0);
+}
+
+.scoreline {
+  display: contents;
+}
+.score-pair {
+  grid-row: 4;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  /* On the phone the petals take only what they need, so the sheet, the verdict and Share
+     fit one screen; the desktop gives them the full room. */
+  padding-block: var(--space-40) var(--space-24);
+}
+.score-ai {
+  grid-column: 1;
+}
+.score-you {
+  grid-column: 3;
+}
+.score {
+  display: grid;
+  place-items: center;
+  inline-size: min(100%, var(--score-width));
+  block-size: var(--score-height);
+}
+/* Share, the key and the notes wait until the teacher has finished writing. */
+.scoreline:not([data-reveal="complete"]) .later {
+  visibility: hidden;
+}
+.is-revealed .controls,
+.score:empty {
+  visibility: hidden;
+}
+.lesson:not(.is-revealed) .score-pair {
+  display: none;
+}
+.result {
+  grid-row: 5;
+  grid-column: 1 / -1;
+  padding-block-start: var(--space-8);
+}
+/* The verdict is set in black at text weight: the teacher speaks once, in the hanamaru. */
+.result-stamp {
+  margin: var(--space-0);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-text);
+  line-height: var(--leading-tight);
+}
+.result-reason {
+  margin: var(--space-8) var(--space-0);
+  text-wrap: pretty;
+}
+.result-note,
+.share-hint,
+.record-line {
+  margin: var(--space-0) var(--space-0) var(--space-8);
+  color: var(--print);
+  font-size: var(--text-quiet);
+  line-height: var(--leading-quiet);
+}
+.mark-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-16);
+}
+.mark-key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.mark-glyph {
+  flex: none;
+  /* Drawn at the sheet's own size, the rings may stand past the line without spacing it out. */
+  margin-block: calc(var(--space-8) * -1);
+  fill: var(--shu-ink);
+}
+.scoring-link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--control-height);
+  font-size: var(--text-quiet);
+}
+.share-slot {
+  display: grid;
+  gap: var(--space-8);
+  margin-block-start: var(--space-8);
+}
+.share-text {
+  display: block;
+  inline-size: 100%;
+  padding: var(--space-8);
+  border: var(--edge) solid var(--sumi);
+  border-radius: var(--radius-cell);
+  background: var(--washi);
+  color: var(--sumi);
+  font: inherit;
+  font-size: var(--text-quiet);
+  resize: none;
+}
+.storage-notice {
+  padding-block-end: var(--space-8);
+}
+.storage-notice p {
+  margin: var(--space-0) var(--space-0) var(--space-8);
+  font-size: var(--text-quiet);
+}
+/* The credit takes a row of its own under the whole sheet. */
+.series-source {
+  grid-column: 1 / -1;
+  margin: var(--space-8) var(--space-0) var(--space-0);
+}
+
+/* Media queries cannot resolve custom properties; 60em is where the whole month fits across. */
+@media (min-width: 60em) {
+  .lesson {
+    grid-template-columns:
+      var(--column) var(--gutter) var(--column) var(--gutter-wide) repeat(4, var(--column))
+      var(--title-width);
+    grid-template-rows: auto calc(var(--row) * 7) auto;
+  }
+  .series {
+    grid-row: 1 / 4;
+    grid-column: 9;
+    justify-self: end;
+    margin: var(--space-0);
+    font-size: var(--text-stamp);
+    writing-mode: vertical-rl;
+    min-inline-size: 0;
+    max-inline-size: calc(var(--row) * 7);
+    align-self: start;
+    max-block-size: var(--title-width);
+    overflow-wrap: anywhere;
+  }
+  .series.is-long-title {
+    padding-block: var(--space-8);
+    font-size: var(--text-display);
+    max-inline-size: calc(var(--row) * 7 + var(--space-64));
+  }
+  .column-head {
+    grid-row: 1;
+    padding-block-end: var(--space-24);
+  }
+  .col-body,
+  .your-prompt,
+  .copy-cover {
+    grid-row: 2;
+  }
+  .head-w0,
+  .head-w1,
+  .head-w2,
+  .body-w0,
+  .body-w1,
+  .body-w2 {
+    display: grid;
+  }
+  .head-w2,
+  .body-w2 {
+    grid-column: 6;
+  }
+  .head-w1,
+  .body-w1 {
+    grid-column: 7;
+  }
+  .head-w0,
+  .body-w0 {
+    grid-column: 8;
+  }
+  .head-w3 .head-days {
+    display: none;
+  }
+  .controls {
+    grid-row: 3;
+    grid-column: 1 / 5;
+    padding-inline-end: var(--gutter);
+  }
+  .score-pair {
+    grid-row: 3;
+    padding-block: var(--hanamaru-room) var(--space-48);
+  }
+  /* The verdict's first line sits level with the middle of the written scores. */
+  .result {
+    grid-row: 3;
+    grid-column: 5 / 9;
+    padding-block-start: calc(
+      var(--hanamaru-room) +
+      (var(--score-height) - var(--text-display)) /
+      2
+    );
+  }
+}
+
+.chart {
+  position: relative;
+  inline-size: 100%;
+  aspect-ratio: var(--chart-ratio-phone);
+}
+.chart-svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  isolation: isolate;
+  font-size: var(--text-small);
+}
+.chart-svg text {
+  fill: var(--sumi);
+}
+.chart-stock {
+  fill: var(--washi);
+}
+.chart-axis,
+.chart-today {
+  fill: none;
+  stroke: var(--sumi);
+  stroke-width: var(--edge);
+}
+.chart-history {
+  fill: none;
+  stroke: var(--sumi);
+  stroke-width: var(--stroke-history);
+  stroke-linecap: var(--linecap-round);
+  stroke-linejoin: var(--linejoin);
+}
+.chart-you-band,
+.chart-ai-band {
+  mix-blend-mode: multiply;
+}
+.chart-you-band {
+  fill: var(--sumi);
+  fill-opacity: var(--you-coverage-opacity);
+}
+.chart-ai-band {
+  fill: var(--print);
+  fill-opacity: var(--ai-coverage-opacity);
+}
+.chart-you-edge,
+.chart-ai-edge {
+  fill: none;
+  stroke-width: var(--stroke-interval);
+}
+.chart-you-edge {
+  stroke: var(--sumi);
+}
+.chart-ai-edge {
+  stroke: var(--print);
+  stroke-dasharray: var(--dash-interval) var(--dash-interval-gap);
+}
+.chart-gesture {
+  fill: var(--sumi);
+}
+.chart-machine {
+  fill: none;
+  stroke: var(--print);
+  stroke-width: var(--stroke-machine);
+  stroke-dasharray: var(--dash-machine) var(--dash-machine-gap);
+  stroke-linecap: var(--linecap-machine);
+  stroke-linejoin: var(--linejoin);
+}
+.chart-reality {
+  fill: none;
+  stroke: var(--shu-ink);
+  stroke-width: var(--stroke-reality);
+  stroke-linecap: var(--linecap-round);
+  stroke-linejoin: var(--linejoin);
+}
+.chart-day-ring {
+  r: var(--marker-radius);
+  fill: var(--washi);
+  stroke: var(--shu);
+  stroke-width: var(--edge-strong);
+}
+.chart-handle {
+  r: var(--handle-radius);
+  fill: var(--washi);
+  stroke: var(--sumi);
+  stroke-width: var(--edge-strong);
+}
+.chart-empty {
+  fill: var(--sumi);
+  fill-opacity: var(--empty-field-opacity);
+}
+.chart-svg .chart-prompt {
+  fill: var(--sumi);
+  font-size: var(--text-body);
+  font-weight: var(--weight-emphasis);
+}
+.chart-svg .chart-start-label {
+  fill: var(--sumi);
+  font-weight: var(--weight-emphasis);
+}
+.chart-svg .chart-end-label {
+  font-size: var(--text-quiet);
+  font-weight: var(--weight-emphasis);
+}
+.chart-svg .chart-you-label {
+  fill: var(--sumi);
+}
+.chart-svg .chart-ai-label {
+  fill: var(--print);
+}
+.chart-connector {
+  fill: none;
+  stroke-width: var(--stroke-connector);
+}
+.chart-you-connector {
+  stroke: var(--sumi);
+}
+.chart-ai-connector {
+  stroke: var(--print);
+}
+.chart-real-connector {
+  stroke: var(--sumi);
+}
+.visually-hidden {
+  position: absolute;
+  inline-size: var(--edge);
+  block-size: var(--edge);
+  padding: var(--space-0);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Media queries cannot resolve custom properties; 40em is the wide chart threshold. */
+@media (min-width: 40em) {
+  .chart {
+    aspect-ratio: var(--chart-ratio-wide);
+  }
+}
+.share-text {
+  display: block;
+  inline-size: 100%;
+  margin-block-start: var(--space-8);
+  padding: var(--space-8);
+  border: var(--edge) solid var(--sumi);
+  border-radius: var(--radius-cell);
+  background: var(--washi);
+  color: var(--sumi);
+  font: inherit;
+  font-size: var(--text-quiet);
+  resize: none;
+}
+.how-section {
+  margin-block-end: var(--space-24);
+}
+.how-section h2 {
+  margin: var(--space-0) var(--space-0) var(--space-8);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+}
+.how-figure {
+  margin: var(--space-16) var(--space-0);
+}
+.how-figure svg {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+.how-band {
+  fill: var(--sumi);
+  fill-opacity: var(--you-coverage-opacity);
+}
+.how-axis,
+.how-error {
+  stroke: var(--sumi);
+  stroke-width: var(--edge);
+}
+.how-line {
+  fill: none;
+  stroke: var(--sumi);
+  stroke-width: var(--stroke-history);
+  stroke-linecap: var(--linecap-round);
+  stroke-linejoin: var(--linejoin);
+}
+.how-actual {
+  fill: var(--sumi);
+}
+.how-label {
+  fill: var(--sumi);
+  font-size: var(--text-small);
+}
+.how-figure figcaption {
+  margin-block-start: var(--space-8);
+  font-size: var(--text-quiet);
+}
+.how-code {
+  margin: var(--space-8) var(--space-0) var(--space-16);
+  padding: var(--space-8);
+  border: var(--edge) solid var(--sumi);
+  border-radius: var(--radius-cell);
+  background: var(--washi);
+  color: var(--sumi);
+  font-family: monospace;
+  font-size: var(--text-quiet);
+  /* A wrapped command needs no scroll region, so it needs no extra tab stop. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.how-link {
+  display: inline-block;
+  margin-block-start: var(--space-8);
+  color: var(--sumi);
+}
+.page-title {
+  margin: var(--space-0);
+  color: var(--sumi);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+  text-align: end;
+}
+.page-footer {
+  grid-column: 2;
+  padding-inline: var(--space-16);
+  font-size: var(--text-quiet);
+}
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-12);
+  font-size: var(--text-quiet);
+}
+.page-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--control-height);
+}
+.page-nav a[aria-current="page"] {
+  font-weight: var(--weight-emphasis);
+  text-decoration-thickness: var(--edge-strong);
+}
+/* The lesson places the shared chart and page parts on its sheet; these follow the shared rules. */
+.lesson-page > .page-nav {
+  grid-column: 1;
+}
+.lesson-page > .page-footer {
+  grid-column: 2;
+  grid-row: 3;
+  padding-inline: var(--space-0);
+}
+.lesson-page > .page-nav,
+.lesson-page > .page-footer {
+  align-self: end;
+  margin-block-start: var(--space-16);
+}
+.match-card > .page-nav,
+.match-card > .page-nav ~ .page-footer {
+  margin-block-start: var(--space-8);
+  border-block-start: var(--edge) solid var(--sumi);
+}
+.match-card > .page-nav {
+  grid-column: 1;
+  padding-inline-start: var(--space-16);
+}
+.page-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--control-height);
+}
+.page-masthead {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas: "wordmark title" "nav nav";
+  row-gap: var(--space-8);
+  padding-block-end: var(--space-0);
+  border-block-end: var(--edge) solid var(--sumi);
+}
+.masthead > .wordmark {
+  grid-area: wordmark;
+}
+.masthead > .page-title {
+  grid-area: title;
+}
+.masthead > .page-nav {
+  grid-area: nav;
+}
+.masthead .custom-title {
+  font-family: var(--font-text);
+  font-size: var(--text-quiet);
+  font-weight: var(--weight-emphasis);
+  line-height: var(--leading-quiet);
+  text-align: end;
+  text-wrap: balance;
+}
+.page {
+  padding: var(--space-16);
+}
+.page p {
+  margin: var(--space-0) var(--space-0) var(--space-12);
+}
+.page h2 {
+  margin: var(--space-0) var(--space-0) var(--space-8);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+}
+.page .controls {
+  padding-inline: var(--space-0);
+}
+.page-message {
+  display: grid;
+  gap: var(--space-12);
+}
+.series-source,
+.page .live-badge,
+.page .live-status,
+.page .live-gap-note,
+.page .data-help {
+  font-size: var(--text-quiet);
+  line-height: var(--leading-quiet);
+}
+.archive-list,
+.history-list,
+.live-legend {
+  margin: var(--space-0) var(--space-0) var(--space-16);
+  padding: var(--space-0);
+  list-style: none;
+}
+.archive-list li,
+.history-list li {
+  border-block-end: var(--edge) solid var(--sumi);
+}
+.archive-list li:first-child,
+.history-list li:first-child {
+  border-block-start: var(--edge) solid var(--sumi);
+}
+.archive-list a {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--control-height);
+}
+.history-list li {
+  padding-block: var(--space-12);
+}
+.page-data {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--space-12);
+  align-items: center;
+}
+.page-data > * {
+  grid-column: 1 / -1;
+}
+.page-data > input[type="checkbox"] {
+  grid-column: 1;
+  inline-size: var(--space-24);
+  block-size: var(--space-24);
+  margin: var(--space-0);
+  accent-color: var(--sumi);
+}
+.page-data > input[type="checkbox"] + label {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  min-block-size: var(--control-height);
+  font-weight: var(--weight-emphasis);
+}
+.page-data > .key-button {
+  margin-block: var(--space-8) var(--space-24);
+}
+.page-data > label[for="restore-file"] {
+  font-weight: var(--weight-emphasis);
+}
+.page-data > input[type="file"] {
+  margin-block: var(--space-8);
+  font: inherit;
+  font-size: var(--text-quiet);
+}
+.page-data > input[type="file"]::file-selector-button {
+  min-block-size: var(--control-height);
+  margin-inline-end: var(--space-12);
+  padding-inline: var(--space-16);
+  border: var(--edge) solid var(--sumi);
+  border-radius: var(--radius-cell);
+  background: var(--washi);
+  color: var(--sumi);
+  font: inherit;
+  font-weight: var(--weight-emphasis);
+  cursor: pointer;
+}
+.live-cards {
+  display: grid;
+}
+.live-card {
+  padding-block: var(--space-24) var(--space-8);
+  border-block-start: var(--edge) solid var(--sumi);
+}
+.live-card .chart {
+  margin-block: var(--space-8);
+}
+.live-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-16);
+  font-size: var(--text-quiet);
+}
+.live-legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+.live-legend li::before {
+  content: "";
+  inline-size: var(--space-24);
+  border-block-start: var(--stroke-machine) dashed var(--print);
+}
+.live-legend li:nth-child(2)::before {
+  border-block-start: var(--stroke-machine) dotted var(--sumi);
+}
+.live-legend li:nth-child(3)::before {
+  border-block-start: var(--stroke-reality) solid var(--shu-ink);
+}
+.live-commit a {
+  overflow-wrap: anywhere;
+}
+/* On the lesson the chart is the sheet itself, laid over every column. */
+.lesson > .chart {
+  position: absolute;
+  inset: var(--space-0);
+  inline-size: auto;
+  aspect-ratio: auto;
+}
+.lesson.is-pending,
+.lesson.is-missing {
+  display: block;
+}
+.lesson.is-pending > :not(.chart),
+.lesson.is-missing > :not(.chart) {
+  display: none;
+}
+.lesson.is-pending > .chart,
+.lesson.is-missing > .chart {
+  position: static;
+  max-inline-size: var(--card-width);
+}
+@media print {
+  .how-ai,
+  .how-sealing,
+  .how-data,
+  .how-run {
+    display: none;
+  }
+  .page-nav {
+    display: none;
+  }
+  .page-how {
+    font-size: var(--text-small);
+  }
+  .how-section {
+    margin-block-end: var(--space-8);
+    break-inside: avoid;
+  }
+  .how-section h2 {
+    font-size: var(--text-body);
+  }
+  .how-figure {
+    margin-block: var(--space-8);
+  }
+  .how-figure svg {
+    inline-size: 50%;
+  }
+}
+@page {
+  margin: var(--space-12);
+}
+
+.live-card[data-state="loading"] .live-chart,
+.live-card[data-state="loading"] .live-legend,
+.live-card[data-state="failed"] .live-chart,
+.live-card[data-state="failed"] .live-legend {
+  display: none;
+}

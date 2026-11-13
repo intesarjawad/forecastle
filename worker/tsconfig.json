@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    // Cloudflare globals collide with Node and Vitest's tinybench declarations; see ADR 0007.
+    "skipLibCheck": true,
+    "types": ["@cloudflare/workers-types", "@cloudflare/vitest-plugin/types"]
+  },
+  "include": ["src", "tests", "vitest.config.ts"]
+}

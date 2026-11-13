@@ -1,0 +1,199 @@
+name: daily
+
+on:
+  schedule:
+    - cron: "10 0 * * *"
+  workflow_dispatch:
+    inputs:
+      verify_push:
+        description: Only push an empty commit through the push step
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  discussions: write
+  issues: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency: daily
+
+jobs:
+  generate:
+    # Scheduled runs wait until a bot identity is configured; the push needs its token.
+    if: vars.BOT_IDENTITY != ''
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      GIT_AUTHOR_NAME: forecastle-bot
+      GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+      GIT_COMMITTER_NAME: forecastle-bot
+      GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+    steps:
+      - name: identity-check
+        env:
+          BOT_IDENTITY: ${{ vars.BOT_IDENTITY }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          case "$BOT_IDENTITY" in
+            app) exit 0 ;;
+            token) ;;
+            *) echo "::error::BOT_IDENTITY must be token or app"; exit 1 ;;
+          esac
+          headers="$RUNNER_TEMP/headers.txt"
+          code=$(curl -sS -o /dev/null -D "$headers" -w "%{http_code}" \
+            -H "Authorization: Bearer $BOT_TOKEN" "https://api.github.com/repos/$GH_REPO") || code=000
+          if [ "$code" != 200 ]; then
+            echo "::error::BOT_TOKEN rejected or expired: create a new token and update the BOT_TOKEN secret"
+            exit 1
+          fi
+          expiry=$(awk 'tolower($1) == "github-authentication-token-expiration:" { sub(/^[^ ]+ +/, ""); print }' "$headers" | tr -d '\r')
+          [ -n "$expiry" ] || exit 0
+          expires_at=$(date -u -d "$expiry" +%s 2>/dev/null) || {
+            echo "::warning::Could not read the BOT_TOKEN expiry date: $expiry"
+            exit 0
+          }
+          if [ "$expires_at" -lt "$(date -u -d '+30 days' +%s)" ]; then
+            day=$(date -u -d "@$expires_at" +%F)
+            if [ "$(gh issue list --search "Renew BOT_TOKEN by in:title" --state open --json number --jq length)" = 0 ]; then
+              gh issue create --title "Renew BOT_TOKEN by $day" \
+                --body "BOT_TOKEN expires on $day. Create a new token and update the BOT_TOKEN secret before then."
+            fi
+          fi
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - if: ${{ !inputs.verify_push }}
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.13.7"
+      - if: ${{ !inputs.verify_push }}
+        run: uv sync --frozen
+      - if: ${{ !inputs.verify_push }}
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/huggingface
+          key: huggingface-${{ hashFiles('pipeline/forecastle_pipeline/models.lock.json') }}
+      - if: ${{ !inputs.verify_push }}
+        run: uv run forecastle-pipeline fetch-model
+      - name: Model timing gate
+        if: ${{ !inputs.verify_push }}
+        run: uv run pytest -m model -s pipeline/tests/test_chronos2_smoke.py
+      - name: Make the puzzle
+        id: puzzle
+        if: ${{ !inputs.verify_push }}
+        run: |
+          day=$(date -u -d '+2 days' +%F)
+          echo "date=$day" >> "$GITHUB_OUTPUT"
+          uv run forecastle-pipeline make-puzzle --date "$day"
+      - name: Commit the puzzle
+        if: ${{ !inputs.verify_push }}
+        env:
+          PUZZLE_DATE: ${{ steps.puzzle.outputs.date }}
+        run: |
+          git add -A
+          git commit -m "chore(daily): add puzzle $PUZZLE_DATE"
+      - name: Commit the push check
+        if: ${{ inputs.verify_push }}
+        env:
+          IDENTITY: ${{ vars.BOT_IDENTITY }}
+        run: |
+          git commit --allow-empty -m "chore(ci): verify daily $IDENTITY push path"
+      - name: Mint the app token
+        id: app-token
+        if: ${{ vars.BOT_IDENTITY == 'app' }}
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+          repositories: ${{ github.event.repository.name }}
+      - name: Push
+        env:
+          BOT_TOKEN: ${{ vars.BOT_IDENTITY == 'token' && secrets.BOT_TOKEN || '' }}
+          APP_TOKEN: ${{ vars.BOT_IDENTITY == 'app' && steps.app-token.outputs.token || '' }}
+        run: |
+          push_token=${BOT_TOKEN:-$APP_TOKEN}
+          git push "https://x-access-token:${push_token}@github.com/${GH_REPO}.git" "HEAD:refs/heads/${GITHUB_REF_NAME}"
+      - name: Open the Puzzle talk discussion
+        if: ${{ !inputs.verify_push }}
+        env:
+          CATEGORY_NAME: Puzzle talk
+          FIND_QUERY: |
+            query($owner: String!, $name: String!) {
+              repository(owner: $owner, name: $name) {
+                id
+                discussionCategories(first: 25) { nodes { id name } }
+              }
+            }
+          LIST_QUERY: |
+            query($owner: String!, $name: String!, $category: ID!) {
+              repository(owner: $owner, name: $name) {
+                discussions(first: 10, categoryId: $category, orderBy: {field: CREATED_AT, direction: DESC}) {
+                  nodes { title }
+                }
+              }
+            }
+          CREATE_QUERY: |
+            mutation($repository: ID!, $category: ID!, $title: String!, $body: String!) {
+              createDiscussion(input: {repositoryId: $repository, categoryId: $category, title: $title, body: $body}) {
+                discussion { url }
+              }
+            }
+        run: |
+          export DAY TITLE
+          DAY=$(date -u +%F)
+          TITLE="Puzzle talk: $DAY"
+          owner=${GH_REPO%%/*}
+          name=${GH_REPO##*/}
+          data=$(gh api graphql -f owner="$owner" -f name="$name" -f query="$FIND_QUERY")
+          category=$(jq -r '.data.repository.discussionCategories.nodes[] | select(.name == env.CATEGORY_NAME) | .id' <<<"$data")
+          if [ -z "$category" ]; then
+            echo "::warning::The $CATEGORY_NAME discussion category does not exist yet; skipping the discussion"
+            exit 0
+          fi
+          existing=$(gh api graphql -f owner="$owner" -f name="$name" -f category="$category" -f query="$LIST_QUERY" \
+            | jq '[.data.repository.discussions.nodes[] | select(.title == env.TITLE)] | length')
+          if [ "$existing" != 0 ]; then
+            echo "A discussion titled \"$TITLE\" already exists"
+            exit 0
+          fi
+          number=$(jq -r '.puzzles[] | select(.id == env.DAY) | .number' site/public/puzzles/index.json)
+          gh api graphql -f repository="$(jq -r .data.repository.id <<<"$data")" -f category="$category" \
+            -f title="$TITLE" -f body="Talk about puzzle #$number here." -f query="$CREATE_QUERY"
+
+  catalogue-health:
+    needs: generate
+    if: ${{ !inputs.verify_push }}
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.13.7"
+      - run: uv sync --frozen
+      - name: Check the catalogue against the live sources
+        run: uv run pytest -m slow -rf pipeline/tests/test_catalogue.py 2>&1 | tee catalogue.txt
+      - name: Report the failing series
+        if: failure()
+        run: |
+          title="Catalogue health: $(date -u +%F)"
+          if [ "$(gh issue list --search "Catalogue health: in:title" --state open --json number --jq length)" != 0 ]; then
+            echo "An open Catalogue health issue already exists"
+            exit 0
+          fi
+          {
+            echo "These series failed the live check:"
+            echo
+            grep '^FAILED' catalogue.txt | sed 's/^FAILED [^[]*\[\(.*\)\].*/- \1/' || true
+          } > body.txt
+          gh issue create --label series --title "$title" --body-file body.txt

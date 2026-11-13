@@ -1,0 +1,24 @@
+{
+  "ai": {
+    "forecaster": "fixture-model",
+    "revision": "fixture-revision",
+    "median": [13, 13, 13, 13, 13, 13, 13],
+    "q10": [12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5],
+    "q90": [13.5, 13.5, 13.5, 13.5, 13.5, 13.5, 13.5]
+  },
+  "forecastSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "gapDays": 0,
+  "horizon": 7,
+  "kind": "historical",
+  "id": "2026-12-01",
+  "number": 101,
+  "seriesId": "fixture-long-label",
+  "label": "Daily mean temperature at the remote Antarctic research base",
+  "unit": "°C",
+  "visible": [
+    8.2, 9, 9.4, 10.1, 10.8, 11.2, 10.5, 9.9, 9.2, 8.8, 9.5, 10.3, 11, 11.6, 12.1, 12.4, 11.8, 11.1,
+    10.4, 9.7, 9.1, 8.6, 9.3, 10, 10.6, 11.3, 11.9, 12.5
+  ],
+  "typicalMove": 2,
+  "yDomain": [6.48, 14.22]
+}

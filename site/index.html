@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eeede7" />
+    <meta name="description" content="A real chart stops. You draw the next week. Then you find out if you beat the AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Forecastle" />
+    <meta property="og:description" content="A real chart stops. You draw the next week. Then you find out if you beat the AI." />
+    <meta property="og:url" content="https://forecastle.intesarjawad.com/" />
+    <meta property="og:image" content="https://forecastle.intesarjawad.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Draw a real chart's next week. See instantly if you beat an AI. Beside it, a lesson sheet where the vermilion correction circles You 85 over the AI's 55 with a flower circle." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="data:," />
+    <link rel="preload" href="../node_modules/@fontsource/shippori-mincho/files/shippori-mincho-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <script id="puzzle-startup">
+      {
+        const route = location.hash || "#/";
+        const archived = /^#\/p\/(\d{4}-\d{2}-\d{2})$/.exec(route);
+        const now = new Date();
+        const today = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+        const id = archived ? archived[1] : route === "#/" ? today : null;
+        const instant = id ? Date.parse(`${id}T00:00:00Z`) : NaN;
+        if (id && Number.isFinite(instant) && new Date(instant).toISOString().slice(0, 10) === id) {
+          const url = new URL(`./puzzles/${id}/puzzle.json`, location.href).href;
+          window.forecastleInitialPuzzle = {
+            url,
+            response: fetch(url, { priority: "high" })
+              .then(async (response) => new Response(await response.arrayBuffer(), {
+                status: response.status,
+                statusText: response.statusText,
+                headers: response.headers,
+              }))
+              .catch(() => Response.error()),
+          };
+        }
+      }
+    </script>
+    <noscript><style>#app { min-block-size: 0; } #startup-loading { display: none; }</style></noscript>
+    <title>Forecastle</title>
+  </head>
+  <body>
+    <main id="app" class="lesson-page" aria-label="Forecastle">
+      <header class="masthead"><h1 class="wordmark">Forecastle</h1></header>
+      <p id="startup-loading" role="status">Loading…</p>
+    </main>
+    <noscript><p class="noscript">Forecastle needs JavaScript to draw. Turn on JavaScript for this site, then reload.</p></noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

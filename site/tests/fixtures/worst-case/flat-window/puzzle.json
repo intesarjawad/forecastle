@@ -1,0 +1,21 @@
+{
+  "ai": {
+    "forecaster": "fixture-model",
+    "revision": "fixture-revision",
+    "median": [5.15, 5.15, 5.15, 5.15, 5.15, 5.15, 5.15],
+    "q10": [5.1, 5.1, 5.1, 5.1, 5.1, 5.1, 5.1],
+    "q90": [5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2]
+  },
+  "forecastSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "gapDays": 0,
+  "horizon": 7,
+  "kind": "historical",
+  "id": "2026-12-04",
+  "number": 104,
+  "seriesId": "fixture-flat",
+  "label": "Daily mean wind speed, coastal station",
+  "unit": "m/s",
+  "visible": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+  "typicalMove": 0.1,
+  "yDomain": [0, 10]
+}

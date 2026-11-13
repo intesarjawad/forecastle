@@ -1,0 +1,67 @@
+name: cold-start
+
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Install the built wheel or the working tree
+        type: choice
+        options:
+          - wheel
+          - source
+        default: wheel
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  custom:
+    name: custom (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.13.7"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the pinned dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          uv sync
+      - name: Replace the package with the built wheel
+        if: inputs.source == 'wheel'
+        shell: bash
+        run: |
+          set -euo pipefail
+          uv build
+          uv pip install --no-deps --force-reinstall dist/*.whl
+      - name: Run both legs
+        shell: bash
+        run: |
+          set -euo pipefail
+          executable=.venv/bin/forecastle-pipeline
+          if [ ! -x "$executable" ]; then
+            executable=.venv/Scripts/forecastle-pipeline.exe
+          fi
+          csv_output=$("$executable" custom pipeline/tests/fixtures/custom_sample.csv \
+            --no-open --out "$RUNNER_TEMP/csv")
+          echo "$csv_output"
+          echo "$csv_output" | grep -Eq '^https://'
+          wiki_output=$("$executable" custom --wikipedia Pumpkin \
+            --no-open --out "$RUNNER_TEMP/wikipedia")
+          echo "$wiki_output"
+          echo "$wiki_output" | grep -Eq '^https://'

@@ -1,0 +1,77 @@
+name: ci
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  lint-workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - run: scripts/lint_workflows.sh
+      - name: A step-level shell without the top-level default must fail
+        run: "! scripts/lint_workflows.sh .github/lint-fixtures > /dev/null"
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: shellcheck scripts/*.sh
+      - name: An unset Worker URL is a notice, not a failure
+        run: WORKER_URL='' scripts/worker_health.sh > skip.txt && grep -q '::notice::' skip.txt
+      - name: An unreachable Worker exits 1 and names the next check
+        run: |
+          WORKER_URL=http://127.0.0.1:9 scripts/worker_health.sh > health.txt || code=$?
+          test "${code:-0}" -eq 1 && grep -q 'Worker unreachable.*Next:' health.txt
+      - name: The Cloudflare request quota error exits 1 with the quota message
+        run: |
+          mkdir -p /tmp/stub/v1 && echo 'error code: 1027' > /tmp/stub/v1/version
+          python3 -m http.server 8787 -d /tmp/stub & sleep 1
+          WORKER_URL=http://127.0.0.1:8787 scripts/worker_health.sh > quota.txt || code=$?
+          test "${code:-0}" -eq 1 && grep -q 'request quota' quota.txt
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run e2e
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.13.7"
+      - run: uv sync --frozen --all-groups
+      - run: uv run ruff format --check . && uv run ruff check . && uv run pyright && uv run pytest -m "not model and not slow"
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,24 @@
+{
+  "ai": {
+    "forecaster": "fixture-model",
+    "revision": "fixture-revision",
+    "median": [-17, -17, -17, -17, -17, -17, -17],
+    "q10": [-18, -18, -18, -18, -18, -18, -18],
+    "q90": [-16, -16, -16, -16, -16, -16, -16]
+  },
+  "forecastSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "gapDays": 0,
+  "horizon": 7,
+  "kind": "historical",
+  "id": "2026-12-03",
+  "number": 103,
+  "seriesId": "fixture-negative",
+  "label": "Daily minimum temperature, Yakutsk",
+  "unit": "°C",
+  "visible": [
+    -8, -10, -13, -16, -18, -21, -23, -25, -24, -22, -19, -17, -15, -12, -10, -9, -11, -14, -17,
+    -20, -22, -24, -26, -28, -27, -25, -23, -22
+  ],
+  "typicalMove": 2,
+  "yDomain": [-36, 0]
+}

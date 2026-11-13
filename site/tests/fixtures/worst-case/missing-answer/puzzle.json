@@ -1,0 +1,24 @@
+{
+  "ai": {
+    "forecaster": "fixture-model",
+    "revision": "fixture-revision",
+    "median": [4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3],
+    "q10": [3.8, 3.8, 3.8, 3.8, 3.8, 3.8, 3.8],
+    "q90": [4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8]
+  },
+  "forecastSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "gapDays": 0,
+  "horizon": 7,
+  "kind": "historical",
+  "id": "2026-12-06",
+  "number": 106,
+  "seriesId": "fixture-missing",
+  "label": "Daily mean temperature, Reykjavik",
+  "unit": "°C",
+  "visible": [
+    2.1, -0.4, 1.2, 3, 4.1, 2.8, 1.5, 0.2, -1.1, -2.4, -1, 0.8, 2.2, 3.5, 4.8, 3.9, 2.6, 1.4, 0.1,
+    -1.3, -2.7, -1.9, -0.2, 1.1, 2.4, 3.6, 4.2, 3.1
+  ],
+  "typicalMove": 1.2,
+  "yDomain": [-5.7, 7.8]
+}

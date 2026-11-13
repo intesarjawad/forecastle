@@ -1,0 +1,15 @@
+Code in this repository is licensed under the MIT License; see LICENSE.
+Published data artifacts are licensed under CC BY 4.0; see DATA_LICENSE.
+
+Upstream sources retain their own terms:
+- Open-Meteo weather data: CC BY 4.0, https://open-meteo.com/en/licence
+- Wikimedia pageview data: CC0, https://dumps.wikimedia.org/other/analytics/
+- Chronos-2 model weights: Apache-2.0, https://huggingface.co/amazon/chronos-2
+- Chronos-2-small model weights: Apache-2.0, https://huggingface.co/autogluon/chronos-2-small
+
+Data exports must carry the source attribution and provenance required by each source.
+The OpenTimestamps client is an external command-line tool licensed under LGPL-3.0;
+it is not imported into the pipeline.
+
+Bundled font, served from the site under the SIL Open Font License 1.1:
+- Shippori Mincho, copyright The Shippori Mincho Project Authors, https://github.com/fontdasu/ShipporiMincho

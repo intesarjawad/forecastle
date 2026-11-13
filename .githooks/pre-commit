@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+npx --no-install biome check --staged --no-errors-on-unmatched
+npx --no-install tsc -p site
+npx --no-install tsc -p worker
+uv run ruff format --check .
+uv run ruff check .
+uv run pyright

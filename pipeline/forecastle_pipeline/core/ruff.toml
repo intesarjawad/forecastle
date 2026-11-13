@@ -1,0 +1,6 @@
+extend = "../../../pyproject.toml"
+
+[lint.flake8-tidy-imports.banned-api]
+"urllib".msg = "core/ is pure; do I/O in series/ or io/"
+"urllib.request".msg = "core/ is pure; do I/O in series/ or io/"
+"torch".msg = "core/ is pure; models live in forecasters/"

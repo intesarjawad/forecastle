@@ -1,0 +1,11 @@
+# A shell set on one step only must fail the top-level defaults check.
+name: step-shell-only
+
+on: [push]
+
+jobs:
+  one:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo one
+        shell: bash

@@ -1,0 +1,268 @@
+name: live
+
+on:
+  schedule:
+    - cron: "5 0 * * 1,4"
+    - cron: "5 0 * * 3,6"
+    - cron: "0 6 * * 3,6"
+    - cron: "0 12 * * 3,6"
+    - cron: "0 18 * * 3,6"
+  workflow_dispatch:
+    inputs:
+      command:
+        description: What to do
+        type: choice
+        options:
+          - open
+          - close
+          - resolve
+        default: open
+      verify_push:
+        description: Only push an empty commit through the push step
+        type: boolean
+        default: false
+      open_day:
+        description: Opening day for open, a Monday or Thursday as YYYY-MM-DD (default today)
+        type: string
+
+permissions:
+  contents: read
+  discussions: write
+  issues: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency: live
+
+jobs:
+  live:
+    # Scheduled runs wait until a bot identity is configured; the push needs its token.
+    if: vars.BOT_IDENTITY != ''
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      GIT_AUTHOR_NAME: forecastle-bot
+      GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+      GIT_COMMITTER_NAME: forecastle-bot
+      GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+    steps:
+      - name: identity-check
+        env:
+          BOT_IDENTITY: ${{ vars.BOT_IDENTITY }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          case "$BOT_IDENTITY" in
+            app) exit 0 ;;
+            token) ;;
+            *) echo "::error::BOT_IDENTITY must be token or app"; exit 1 ;;
+          esac
+          headers="$RUNNER_TEMP/headers.txt"
+          code=$(curl -sS -o /dev/null -D "$headers" -w "%{http_code}" \
+            -H "Authorization: Bearer $BOT_TOKEN" "https://api.github.com/repos/$GH_REPO") || code=000
+          if [ "$code" != 200 ]; then
+            echo "::error::BOT_TOKEN rejected or expired: create a new token and update the BOT_TOKEN secret"
+            exit 1
+          fi
+          expiry=$(awk 'tolower($1) == "github-authentication-token-expiration:" { sub(/^[^ ]+ +/, ""); print }' "$headers" | tr -d '\r')
+          [ -n "$expiry" ] || exit 0
+          expires_at=$(date -u -d "$expiry" +%s 2>/dev/null) || {
+            echo "::warning::Could not read the BOT_TOKEN expiry date: $expiry"
+            exit 0
+          }
+          if [ "$expires_at" -lt "$(date -u -d '+30 days' +%s)" ]; then
+            day=$(date -u -d "@$expires_at" +%F)
+            if [ "$(gh issue list --search "Renew BOT_TOKEN by in:title" --state open --json number --jq length)" = 0 ]; then
+              gh issue create --title "Renew BOT_TOKEN by $day" \
+                --body "BOT_TOKEN expires on $day. Create a new token and update the BOT_TOKEN secret before then."
+            fi
+          fi
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Choose the command
+        id: plan
+        if: ${{ !inputs.verify_push }}
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_COMMAND: ${{ inputs.command }}
+          INPUT_OPEN_DAY: ${{ inputs.open_day }}
+        run: |
+          final=true
+          if [ "$EVENT" = schedule ]; then
+            case "$SCHEDULE" in
+              "5 0 * * 1,4") command=open ;;
+              "5 0 * * 3,6") command=close ;;
+              "0 6 * * 3,6" | "0 12 * * 3,6") command=resolve; final=false ;;
+              "0 18 * * 3,6") command=resolve ;;
+              *) echo "::error::Unknown schedule: $SCHEDULE"; exit 1 ;;
+            esac
+          else
+            command=$INPUT_COMMAND
+          fi
+          open_day=${INPUT_OPEN_DAY:-$(date -u +%F)}
+          if [ "$command" = open ]; then
+            if [ "$(date -u -d "$open_day" +%F 2>/dev/null)" != "$open_day" ]; then
+              echo "::error::open_day must be a date as YYYY-MM-DD: $open_day"
+              exit 1
+            fi
+            case "$(date -u -d "$open_day" +%u)" in
+              1 | 4) ;;
+              *) echo "::error::open_day must be a Monday or Thursday: $open_day"; exit 1 ;;
+            esac
+          fi
+          {
+            echo "command=$command"
+            echo "open_day=$open_day"
+            echo "final=$final"
+          } >> "$GITHUB_OUTPUT"
+      - name: Worker health
+        if: ${{ !inputs.verify_push && steps.plan.outputs.command == 'open' }}
+        run: scripts/worker_health.sh
+      - if: ${{ !inputs.verify_push }}
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.13.7"
+      - if: ${{ !inputs.verify_push }}
+        run: uv sync --frozen --group bench
+      - if: ${{ !inputs.verify_push && steps.plan.outputs.command != 'resolve' }}
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/huggingface
+          key: huggingface-${{ hashFiles('pipeline/forecastle_pipeline/models.lock.json') }}
+      - if: ${{ !inputs.verify_push && steps.plan.outputs.command != 'resolve' }}
+        run: uv run forecastle-pipeline fetch-model
+      - name: Check the daily puzzles are ahead
+        if: ${{ !inputs.verify_push }}
+        run: |
+          newest=$(jq -r '[.puzzles[].id] | max' site/public/puzzles/index.json)
+          need=$(date -u -d '+1 day' +%F)
+          if [[ "$newest" < "$need" ]]; then
+            echo "::error::The newest daily puzzle is $newest, earlier than $need; the daily workflow has stopped producing puzzles"
+            exit 1
+          fi
+      - name: Open the round
+        if: ${{ !inputs.verify_push && steps.plan.outputs.command == 'open' }}
+        env:
+          SEAL_KEY: ${{ secrets.SEAL_KEY }}
+          OPEN_DAY: ${{ steps.plan.outputs.open_day }}
+        run: uv run forecastle-pipeline open-live-round --open-day "$OPEN_DAY"
+      - name: Close the due rounds
+        id: close
+        if: ${{ !inputs.verify_push && steps.plan.outputs.command == 'close' }}
+        continue-on-error: true
+        env:
+          SEAL_KEY: ${{ secrets.SEAL_KEY }}
+        run: uv run forecastle-pipeline close-live-round
+      - name: Resolve the due rounds
+        id: resolve
+        if: ${{ !inputs.verify_push && steps.plan.outputs.command == 'resolve' }}
+        continue-on-error: true
+        env:
+          EXPORT_TOKEN: ${{ secrets.EXPORT_TOKEN }}
+        run: |
+          jq -r '.live[] | select(.resolved == true) | .id' site/public/puzzles/index.json | sort > "$RUNNER_TEMP/resolved-before.txt"
+          uv run forecastle-pipeline resolve-live-round
+      - name: Regenerate BENCHMARK.md
+        if: ${{ !inputs.verify_push && steps.plan.outputs.command == 'resolve' }}
+        run: uv run python scripts/benchmark_report.py
+      - name: Commit the round files
+        if: ${{ !inputs.verify_push }}
+        env:
+          COMMAND: ${{ steps.plan.outputs.command }}
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "chore(live): $COMMAND rounds on $(date -u +%F)"
+      - name: Commit the push check
+        if: ${{ inputs.verify_push }}
+        env:
+          IDENTITY: ${{ vars.BOT_IDENTITY }}
+        run: |
+          git commit --allow-empty -m "chore(ci): verify live $IDENTITY push path"
+      - name: Mint the app token
+        id: app-token
+        if: ${{ vars.BOT_IDENTITY == 'app' }}
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+          repositories: ${{ github.event.repository.name }}
+      - name: Push
+        id: push
+        env:
+          BOT_TOKEN: ${{ vars.BOT_IDENTITY == 'token' && secrets.BOT_TOKEN || '' }}
+          APP_TOKEN: ${{ vars.BOT_IDENTITY == 'app' && steps.app-token.outputs.token || '' }}
+        run: |
+          push_token=${BOT_TOKEN:-$APP_TOKEN}
+          git push "https://x-access-token:${push_token}@github.com/${GH_REPO}.git" "HEAD:refs/heads/${GITHUB_REF_NAME}"
+      - name: Open the results discussions
+        if: ${{ !inputs.verify_push && steps.plan.outputs.command == 'resolve' }}
+        env:
+          CATEGORY_NAME: Announcements
+          FIND_QUERY: |
+            query($owner: String!, $name: String!) {
+              repository(owner: $owner, name: $name) {
+                id
+                discussionCategories(first: 25) { nodes { id name } }
+              }
+            }
+          CREATE_QUERY: |
+            mutation($repository: ID!, $category: ID!, $title: String!, $body: String!) {
+              createDiscussion(input: {repositoryId: $repository, categoryId: $category, title: $title, body: $body}) {
+                discussion { url }
+              }
+            }
+        run: |
+          jq -r '.live[] | select(.resolved == true) | .id' site/public/puzzles/index.json | sort > "$RUNNER_TEMP/resolved-after.txt"
+          rounds=$(comm -13 "$RUNNER_TEMP/resolved-before.txt" "$RUNNER_TEMP/resolved-after.txt")
+          [ -n "$rounds" ] || exit 0
+          owner=${GH_REPO%%/*}
+          name=${GH_REPO##*/}
+          data=$(gh api graphql -f owner="$owner" -f name="$name" -f query="$FIND_QUERY")
+          category=$(jq -r '.data.repository.discussionCategories.nodes[] | select(.name == env.CATEGORY_NAME) | .id' <<<"$data")
+          if [ -z "$category" ]; then
+            echo "::warning::The $CATEGORY_NAME discussion category does not exist yet; skipping the results discussions"
+            exit 0
+          fi
+          for round in $rounds; do
+            uv run python scripts/benchmark_report.py --round "$round" > "$RUNNER_TEMP/report.md"
+            gh api graphql -f repository="$(jq -r .data.repository.id <<<"$data")" -f category="$category" \
+              -f title="Live round $round resolved" -f body="$(cat "$RUNNER_TEMP/report.md")" -f query="$CREATE_QUERY"
+          done
+      - name: Fail when a due round did not finish
+        if: ${{ !cancelled() && !inputs.verify_push }}
+        env:
+          COMMAND: ${{ steps.plan.outputs.command }}
+          FINAL: ${{ steps.plan.outputs.final }}
+          CLOSE_OUTCOME: ${{ steps.close.outcome }}
+          RESOLVE_OUTCOME: ${{ steps.resolve.outcome }}
+        run: |
+          if [ "$CLOSE_OUTCOME" = failure ]; then
+            echo "::error::Closing a due round failed; the next close run retries it"
+            exit 1
+          fi
+          [ "$COMMAND" = resolve ] || exit 0
+          now=$(date -u +%Y-%m-%dT%H:%M:%S)
+          unresolved=$(NOW=$now jq -r '.live[] | select(.resolvesUtc[:19] <= env.NOW and .resolved != true) | .id' site/public/puzzles/index.json)
+          if [ -n "$unresolved" ] && [ "$FINAL" = true ]; then
+            echo "::error::Rounds still unresolved: $(tr '\n' ' ' <<<"$unresolved")"
+            exit 1
+          fi
+          if [ "$RESOLVE_OUTCOME" = failure ] || [ -n "$unresolved" ]; then
+            echo "::warning::Rounds still unresolved: $(tr '\n' ' ' <<<"$unresolved"); a later run retries them"
+          fi
+      - name: Mirror to Hugging Face
+        if: ${{ !cancelled() && !inputs.verify_push && steps.push.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -z "${HF_TOKEN:-}" ] || [ ! -f scripts/export_hf.py ]; then
+            echo "::warning::HF_TOKEN is unset or scripts/export_hf.py does not exist yet; skipping the Hugging Face mirror"
+            exit 0
+          fi
+          uv run python scripts/export_hf.py

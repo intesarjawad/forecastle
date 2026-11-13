@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: If you use Forecastle or its live-round dataset, please cite it as below.
+title: "Forecastle: a daily forecasting game and live benchmark of players against a forecasting model"
+type: software
+authors:
+  - family-names: Jawad
+    given-names: Intesar
+version: 0.1.0
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/intesarjawad/forecastle"
+url: "https://huggingface.co/datasets/intesarjawad/forecastle"
+abstract: >-
+  Forecastle is a daily browser game in which players draw the next seven days of a real chart and
+  are scored against a forecasting model that saw the same history. The live rounds are published
+  as a dataset in the fev layout, with a data card that lists the known biases of the comparison.
+keywords:
+  - forecasting
+  - time series
+  - benchmark
+  - fev

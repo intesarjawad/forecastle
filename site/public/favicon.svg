@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Forecastle</title>
+  <path fill="#eeede7" d="M0 0h64v64H0z"/>
+  <path fill="#17140f" d="M18 12h30v10H30v9h15v10H30v11H18z"/>
+  <path fill="#ad2f18" d="m16 55 5-3 5 2 5-5 5 2 5-5 7 2v4l-6-2-5 5-5-2-5 5-5-2-6 4z"/>
+</svg>

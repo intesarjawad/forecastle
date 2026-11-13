@@ -1,0 +1,24 @@
+{
+  "ai": {
+    "forecaster": "fixture-model",
+    "revision": "fixture-revision",
+    "median": [53, 53, 53, 1003, 53, 53, 53],
+    "q10": [52, 52, 52, 1002, 52, 52, 52],
+    "q90": [54, 54, 54, 1004, 54, 54, 54]
+  },
+  "forecastSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "gapDays": 0,
+  "horizon": 7,
+  "kind": "historical",
+  "id": "2026-12-05",
+  "number": 105,
+  "seriesId": "fixture-spike",
+  "label": "Daily orders, regional warehouse",
+  "unit": "orders",
+  "visible": [
+    50, 49, 51, 50, 48, 52, 50, 51, 49, 50, 50, 49, 51, 50, 48, 52, 50, 51, 50, 49, 51, 50, 50, 49,
+    51, 50, 52, 50
+  ],
+  "typicalMove": 2,
+  "yDomain": [46.4, 53.6]
+}

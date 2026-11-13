@@ -1,0 +1,338 @@
+[
+  {
+    "name": "perfect path",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [8, 9, 10, 11, 12, 13, 14],
+    "interval": { "lower": [7, 8, 9, 10, 11, 12, 13], "upper": [9, 10, 11, 12, 13, 14, 15] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 100,
+      "cells": ["green", "green", "green", "green", "green", "green", "green"],
+      "coverage": 7,
+      "winkler": 2,
+      "quantileLoss": 0.06666666666666667
+    }
+  },
+  {
+    "name": "flat line",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [7, 7, 7, 7, 7, 7, 7],
+    "interval": { "lower": [6, 6, 6, 6, 6, 6, 6], "upper": [8, 8, 8, 8, 8, 8, 8] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 0,
+      "cells": ["green", "yellow", "white", "white", "white", "white", "white"],
+      "coverage": 1,
+      "winkler": 32,
+      "quantileLoss": 1.7333333333333334
+    }
+  },
+  {
+    "name": "offset by exactly one move includes the green boundary",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [9, 10, 11, 12, 13, 14, 15],
+    "interval": { "lower": [8, 9, 10, 11, 12, 13, 14], "upper": [10, 11, 12, 13, 14, 15, 16] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 75,
+      "cells": ["green", "green", "green", "green", "green", "green", "green"],
+      "coverage": 7,
+      "winkler": 2,
+      "quantileLoss": 0.23333333333333334
+    }
+  },
+  {
+    "name": "offset by exactly two moves includes the yellow boundary",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [10, 11, 12, 13, 14, 15, 16],
+    "interval": { "lower": [9, 10, 11, 12, 13, 14, 15], "upper": [11, 12, 13, 14, 15, 16, 17] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 50,
+      "cells": ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"],
+      "coverage": 0,
+      "winkler": 12,
+      "quantileLoss": 0.7333333333333333
+    }
+  },
+  {
+    "name": "offset by two and a half moves rounds a half point upward",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [10.5, 11.5, 12.5, 13.5, 14.5, 15.5, 16.5],
+    "interval": {
+      "lower": [9.5, 10.5, 11.5, 12.5, 13.5, 14.5, 15.5],
+      "upper": [11.5, 12.5, 13.5, 14.5, 15.5, 16.5, 17.5]
+    },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 38,
+      "cells": ["white", "white", "white", "white", "white", "white", "white"],
+      "coverage": 0,
+      "winkler": 17,
+      "quantileLoss": 0.9833333333333333
+    }
+  },
+  {
+    "name": "band covering all includes both edges",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [11, 11, 11, 11, 11, 11, 11],
+    "interval": { "lower": [8, 8, 8, 8, 8, 8, 8], "upper": [14, 14, 14, 14, 14, 14, 14] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 57,
+      "cells": ["white", "yellow", "green", "green", "green", "yellow", "white"],
+      "coverage": 7,
+      "winkler": 6,
+      "quantileLoss": 0.4857142857142857
+    }
+  },
+  {
+    "name": "band covering none",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [11, 12, 13, 14, 15, 16, 17],
+    "interval": { "lower": [10, 11, 12, 13, 14, 15, 16], "upper": [12, 13, 14, 15, 16, 17, 18] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 25,
+      "cells": ["white", "white", "white", "white", "white", "white", "white"],
+      "coverage": 0,
+      "winkler": 22,
+      "quantileLoss": 1.2333333333333334
+    }
+  },
+  {
+    "name": "zero-width band",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [9, 10, 11, 12, 13, 14, 15],
+    "interval": { "lower": [9, 10, 11, 12, 13, 14, 15], "upper": [9, 10, 11, 12, 13, 14, 15] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 75,
+      "cells": ["green", "green", "green", "green", "green", "green", "green"],
+      "coverage": 0,
+      "winkler": 10,
+      "quantileLoss": 0.5
+    }
+  },
+  {
+    "name": "constant visible series uses the epsilon floor",
+    "visible": [5, 5, 5, 5, 5, 5, 5, 5],
+    "path": [5, 5, 5, 5, 5, 5, 5],
+    "interval": { "lower": [5, 5, 5, 5, 5, 5, 5], "upper": [5, 5, 5, 5, 5, 5, 5] },
+    "actual": [5, 5, 5, 5, 5, 5, 5],
+    "k": 4,
+    "expected": {
+      "typicalMove": 2.220446049250313e-16,
+      "closeness": 100,
+      "cells": ["green", "green", "green", "green", "green", "green", "green"],
+      "coverage": 7,
+      "winkler": 0,
+      "quantileLoss": 0
+    }
+  },
+  {
+    "name": "negative temperatures",
+    "visible": [-12, -10, -8, -6, -4, -2, 0, 2],
+    "path": [-12, -15, -10, -13, -8, -11, -6],
+    "interval": {
+      "lower": [-14, -17, -12, -15, -10, -13, -8],
+      "upper": [-10, -13, -8, -11, -6, -9, -4]
+    },
+    "actual": [-14, -13, -12, -11, -10, -9, -8],
+    "k": 4,
+    "expected": {
+      "typicalMove": 2,
+      "closeness": 75,
+      "cells": ["green", "green", "green", "green", "green", "green", "green"],
+      "coverage": 7,
+      "winkler": 4,
+      "quantileLoss": 0.4666666666666667
+    }
+  },
+  {
+    "name": "pageviews in the millions",
+    "visible": [1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000],
+    "path": [2000000, 2100000, 2200000, 2300000, 2400000, 2500000, 2600000],
+    "interval": {
+      "lower": [1900000, 2000000, 2100000, 2200000, 2300000, 2400000, 2500000],
+      "upper": [2100000, 2200000, 2300000, 2400000, 2500000, 2600000, 2700000]
+    },
+    "actual": [1800000, 1900000, 2000000, 2100000, 2200000, 2300000, 2400000],
+    "k": 4,
+    "expected": {
+      "typicalMove": 100000,
+      "closeness": 50,
+      "cells": ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"],
+      "coverage": 0,
+      "winkler": 1200000,
+      "quantileLoss": 73333.33333333333
+    }
+  },
+  {
+    "name": "one spike day",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [8, 9, 10, 11, 12, 13, 14],
+    "interval": { "lower": [7, 8, 9, 10, 11, 12, 13], "upper": [9, 10, 11, 12, 13, 14, 15] },
+    "actual": [8, 9, 10, 18, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 75,
+      "cells": ["green", "green", "green", "white", "green", "green", "green"],
+      "coverage": 6,
+      "winkler": 10.571428571428571,
+      "quantileLoss": 0.5190476190476191
+    }
+  },
+  {
+    "name": "path above then below reality",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [8, 10, 9, 13, 10, 16, 11],
+    "interval": { "lower": [7, 9, 8, 12, 9, 15, 10], "upper": [9, 11, 10, 14, 11, 17, 12] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 57,
+      "cells": ["green", "green", "green", "yellow", "yellow", "white", "white"],
+      "coverage": 3,
+      "winkler": 10.571428571428571,
+      "quantileLoss": 0.638095238095238
+    }
+  },
+  {
+    "name": "MAE past k times typical move clamps closeness to zero",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [13, 14, 15, 16, 17, 18, 19],
+    "interval": { "lower": [12, 13, 14, 15, 16, 17, 18], "upper": [14, 15, 16, 17, 18, 19, 20] },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1,
+      "closeness": 0,
+      "cells": ["white", "white", "white", "white", "white", "white", "white"],
+      "coverage": 0,
+      "winkler": 42,
+      "quantileLoss": 2.2333333333333334
+    }
+  },
+  {
+    "name": "reject overflowing visible",
+    "visible": [1e308, -1e308, 1e308, -1e308, 1e308, -1e308, 1e308, -1e308],
+    "path": [8, 9, 10, 11, 12, 13, 14],
+    "interval": {
+      "lower": [7, 8, 9, 10, 11, 12, 13],
+      "upper": [9, 10, 11, 12, 13, 14, 15]
+    },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "error": "visible values must be finite with absolute value <= 1e100"
+  },
+  {
+    "name": "reject overflowing path",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [1e308, -1e308, 1e308, -1e308, 1e308, -1e308, 1e308],
+    "interval": {
+      "lower": [7, 8, 9, 10, 11, 12, 13],
+      "upper": [9, 10, 11, 12, 13, 14, 15]
+    },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "error": "path values must be finite with absolute value <= 1e100"
+  },
+  {
+    "name": "reject overflowing actual",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [8, 9, 10, 11, 12, 13, 14],
+    "interval": {
+      "lower": [7, 8, 9, 10, 11, 12, 13],
+      "upper": [9, 10, 11, 12, 13, 14, 15]
+    },
+    "actual": [1e308, -1e308, 1e308, -1e308, 1e308, -1e308, 1e308],
+    "k": 4,
+    "error": "actual values must be finite with absolute value <= 1e100"
+  },
+  {
+    "name": "reject overflowing lower",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [8, 9, 10, 11, 12, 13, 14],
+    "interval": {
+      "lower": [1e308, -1e308, 1e308, -1e308, 1e308, -1e308, 1e308],
+      "upper": [9, 10, 11, 12, 13, 14, 15]
+    },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "error": "interval.lower values must be finite with absolute value <= 1e100"
+  },
+  {
+    "name": "reject overflowing upper",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [8, 9, 10, 11, 12, 13, 14],
+    "interval": {
+      "lower": [7, 8, 9, 10, 11, 12, 13],
+      "upper": [1e308, -1e308, 1e308, -1e308, 1e308, -1e308, 1e308]
+    },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "error": "interval.upper values must be finite with absolute value <= 1e100"
+  },
+  {
+    "name": "reject empty path",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [],
+    "interval": {
+      "lower": [7, 8, 9, 10, 11, 12, 13],
+      "upper": [9, 10, 11, 12, 13, 14, 15]
+    },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 4,
+    "error": "path must contain 7 values"
+  },
+  {
+    "name": "reject overflowing k",
+    "visible": [0, 1, 2, 3, 4, 5, 6, 7],
+    "path": [8, 9, 10, 11, 12, 13, 14],
+    "interval": {
+      "lower": [7, 8, 9, 10, 11, 12, 13],
+      "upper": [9, 10, 11, 12, 13, 14, 15]
+    },
+    "actual": [8, 9, 10, 11, 12, 13, 14],
+    "k": 1e308,
+    "error": "k must be finite and in (0, 1e100]"
+  },
+  {
+    "name": "safe magnitude bound keeps all scores finite",
+    "visible": [0, 1e100],
+    "path": [1e100, 1e100, 1e100, 1e100, 1e100, 1e100, 1e100],
+    "interval": {
+      "lower": [0, 0, 0, 0, 0, 0, 0],
+      "upper": [1e100, 1e100, 1e100, 1e100, 1e100, 1e100, 1e100]
+    },
+    "actual": [-1e100, -1e100, -1e100, -1e100, -1e100, -1e100, -1e100],
+    "k": 4,
+    "expected": {
+      "typicalMove": 1e100,
+      "closeness": 50,
+      "cells": ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"],
+      "coverage": 0,
+      "winkler": 1.1e101,
+      "quantileLoss": 7e99
+    }
+  }
+]
