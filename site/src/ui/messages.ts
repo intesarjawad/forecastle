@@ -1,5 +1,6 @@
 /** The privacy notice is a repository document, so the site links to its published copy. */
 export const PRIVACY_URL = "https://github.com/intesarjawad/forecastle/blob/main/docs/privacy.md";
+export const REPOSITORY_URL = "https://github.com/intesarjawad/forecastle";
 
 /** Runs the one control that can resolve an error. */
 export type MessageRun = () => void | Promise<void>;
@@ -51,6 +52,7 @@ export const messages = {
     how: "Scoring",
     data: "Your data",
     privacy: "Privacy",
+    github: "Star on GitHub",
   },
   archive: {
     title: "Archive",

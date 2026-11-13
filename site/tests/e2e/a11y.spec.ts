@@ -214,7 +214,14 @@ test("a custom link plays through to the share button from the keyboard alone", 
   await shareByKeyboard(page);
 });
 
-const NAV = ["link: Today", "link: Archive", "link: Live", "link: Scoring", "link: Your data"];
+const NAV = [
+  "link: Today",
+  "link: Archive",
+  "link: Live",
+  "link: Scoring",
+  "link: Your data",
+  "link: Star on GitHub",
+];
 const DAYS = [1, 2, 3, 4, 5, 6, 7].map((day) => `slider: Day ${day}`);
 const COMMIT = ["link: fbb02a8affd2", "link: OpenTimestamps proof"];
 const FOOTER = "link: Privacy";

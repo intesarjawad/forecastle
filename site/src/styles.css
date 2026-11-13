@@ -1089,6 +1089,23 @@ a {
   align-items: center;
   min-block-size: var(--control-height);
 }
+.page-nav .page-nav-repository {
+  gap: 0.4em;
+  margin-inline-start: auto;
+  min-inline-size: var(--space-24);
+  justify-content: center;
+}
+/* Media queries cannot resolve custom properties; below 30em the nav row has no room for the text. */
+@media (max-width: 30em) {
+  .page-nav-repository span {
+    position: absolute;
+    inline-size: var(--edge);
+    block-size: var(--edge);
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
 .page-nav a[aria-current="page"] {
   font-weight: var(--weight-emphasis);
   text-decoration-thickness: var(--edge-strong);
