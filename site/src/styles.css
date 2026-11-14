@@ -1114,6 +1114,11 @@ a {
 .lesson-page > .page-nav {
   grid-column: 1;
 }
+/* On the lesson sheet and the match card the footer sits beside the nav, so the last link needs air before it. */
+.lesson-page > .page-nav .page-nav-repository,
+.match-card > .page-nav .page-nav-repository {
+  margin-inline-end: var(--space-12);
+}
 .lesson-page > .page-footer {
   grid-column: 2;
   grid-row: 3;
