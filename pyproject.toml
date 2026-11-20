@@ -5,11 +5,11 @@ description = "Make a Forecastle puzzle from your own daily data; also the pipel
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12,<3.13"
-dependencies = ["chronos-forecasting==2.3.2", "torch==2.15.0", "numpy==2.5.4"]
+dependencies = ["chronos-forecasting==2.3.2", "torch==2.15.0", "numpy==2.5.5"]
 [project.scripts]
 forecastle-pipeline = "forecastle_pipeline.cli:main"
 [dependency-groups]
-dev = ["ruff==0.17.4", "pyright==1.1.414", "pytest==9.2.0", "hypothesis==6.170.15", "opentimestamps-client==0.8.0"]
+dev = ["ruff==0.17.5", "pyright==1.1.414", "pytest==9.2.0", "hypothesis==6.170.15", "opentimestamps-client==0.8.0"]
 bench = ["fev>=0.10.0", "datasets==4.8.5"]
 [build-system]
 requires = ["uv_build>=0.13.7,<0.14"]
